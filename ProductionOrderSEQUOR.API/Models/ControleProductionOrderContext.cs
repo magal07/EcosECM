@@ -26,26 +26,34 @@ namespace ProductionOrderSEQUOR.API.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+
             modelBuilder.Entity<Material>(entity =>
             {
                 entity.HasKey(e => e.MaterialCode)
-                    .HasName("PK__Material__170C54BB56254DA7");
+                    .HasName("PK__Material__170C54BBBD61999C");
+            });
+
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.HasKey(e => e.Order1)
+                    .HasName("PK__Order__67A3D86D6DCFC611");
             });
 
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasKey(e => e.ProductCode)
-                    .HasName("PK__Product__2F4E024E5BF9E9EF");
+                    .HasName("PK__Product__2F4E024EF16DAE3E");
 
                 entity.HasMany(d => d.MaterialCode)
                     .WithMany(p => p.ProductCode)
                     .UsingEntity<Dictionary<string, object>>(
                         "ProductMaterial",
-                        l => l.HasOne<Material>().WithMany().HasForeignKey("MaterialCode").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__ProductMa__Mater__4CA06362"),
-                        r => r.HasOne<Product>().WithMany().HasForeignKey("ProductCode").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__ProductMa__Produ__4BAC3F29"),
+                        l => l.HasOne<Material>().WithMany().HasForeignKey("MaterialCode").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__ProductMa__Mater__2B3F6F97"),
+                        r => r.HasOne<Product>().WithMany().HasForeignKey("ProductCode").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__ProductMa__Produ__2A4B4B5E"),
                         j =>
                         {
-                            j.HasKey("ProductCode", "MaterialCode").HasName("PK__ProductM__8E3EC7052B8B4017");
+                            j.HasKey("ProductCode", "MaterialCode").HasName("PK__ProductM__8E3EC7058AC94BB1");
 
                             j.ToTable("ProductMaterial");
 
@@ -59,21 +67,19 @@ namespace ProductionOrderSEQUOR.API.Models
             {
                 entity.HasOne(d => d.EmailNavigation)
                     .WithMany(p => p.Production)
+                    .HasPrincipalKey(p => p.Email)
                     .HasForeignKey(d => d.Email)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Productio__Email__5165187F");
+                    .HasConstraintName("FK__Productio__Email__30F848ED");
 
-                entity.HasOne(d => d.Order)
+                entity.HasOne(d => d.MaterialCodeNavigation)
                     .WithMany(p => p.Production)
-                    .HasForeignKey(d => d.OrderId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Productio__Order__52593CB8");
-            });
+                    .HasForeignKey(d => d.MaterialCode)
+                    .HasConstraintName("FK__Productio__Mater__32E0915F");
 
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasKey(e => e.Email)
-                    .HasName("PK__User__A9D10535AE0AB1E6");
+                entity.HasOne(d => d.OrderNavigation)
+                    .WithMany(p => p.Production)
+                    .HasForeignKey(d => d.Order)
+                    .HasConstraintName("FK__Productio__Order__31EC6D26");
             });
 
             OnModelCreatingPartial(modelBuilder);

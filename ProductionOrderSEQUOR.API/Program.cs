@@ -2,6 +2,8 @@ using ProductionOrderSEQUOR.API.Models;
 using Microsoft.EntityFrameworkCore;
 using ProductionOrderSEQUOR.API.Interfaces;
 using ProductionOrderSEQUOR.API.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using ProductionOrderSEQUOR.API.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+/*
+builder.services.AddScoped<ITokenService,TokenService>();
+builder.services.AddAuthentication(JwtBearerDefaults.AuthenticatationScheme);   */
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
 
 var app = builder.Build();
 

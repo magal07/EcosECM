@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProductionOrderSEQUOR.API.Interfaces;
 using ProductionOrderSEQUOR.API.Models;
 
@@ -32,12 +33,12 @@ namespace ProductionOrderSEQUOR.API.Repositories
 
         public async Task<bool> SavellAsync()
         {
-            return await _context.SaveChangesAsync() >0; // SE FOR MAIOR QUE 0, SALVOU A INSTÂNCIA, CASO CONTRÁRIO RETORNARÁ FALSE COM ALGUM ERRO! (Geralmente erro de DB)
+            return await _context.SaveChangesAsync() > 0; // SE FOR MAIOR QUE 0, SALVOU A INSTÂNCIA, CASO CONTRÁRIO RETORNARÁ FALSE COM ALGUM ERRO! (Geralmente erro de DB)
         }
 
-        public async Task<User> SelecionarByPk(string Email)
+        public async Task<User> SelecionarByPk(int id)
         {
-            var user = await _context.User.Where(x => x.Email == Email).FirstOrDefaultAsync();    // await -> se não ele retorna a task ao invés do usuário
+            var user = await _context.User.Where(x => x.Id == id).FirstOrDefaultAsync();    // await -> se não ele retorna a task ao invés do usuário
             if (user == null)
             {
                 // Retorne um valor padrão, ou lançar uma exceção
@@ -52,5 +53,7 @@ namespace ProductionOrderSEQUOR.API.Repositories
         {
             return await _context.User.ToListAsync();
         }
+
     }
+
 }

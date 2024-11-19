@@ -12,6 +12,7 @@ namespace ProductionOrderSEQUOR.API.Models
     {
         public Material()
         {
+            Production = new HashSet<Production>();
             ProductCode = new HashSet<Product>();
         }
 
@@ -19,10 +20,12 @@ namespace ProductionOrderSEQUOR.API.Models
         [StringLength(50)]
         [Unicode(false)]
         public string MaterialCode { get; set; }
-        [Required]
         [StringLength(500)]
         [Unicode(false)]
         public string MaterialDescription { get; set; }
+
+        [InverseProperty("MaterialCodeNavigation")]
+        public virtual ICollection<Production> Production { get; set; }
 
         [ForeignKey("MaterialCode")]
         [InverseProperty("MaterialCode")]

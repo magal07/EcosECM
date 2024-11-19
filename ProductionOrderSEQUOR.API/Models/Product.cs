@@ -19,16 +19,14 @@ namespace ProductionOrderSEQUOR.API.Models
         [StringLength(50)]
         [Unicode(false)]
         public string ProductCode { get; set; }
-        [Required]
         [StringLength(50)]
         [Unicode(false)]
         public string ProductDescription { get; set; }
-        [Required]
         [StringLength(500)]
         [Unicode(false)]
         public string Image { get; set; }
         [Column(TypeName = "numeric(18, 2)")]
-        public decimal CycleTime { get; set; }
+        public decimal? CycleTime { get; set; }
 
         [ForeignKey("ProductCode")]
         [InverseProperty("ProductCode")]

@@ -11,33 +11,32 @@ namespace ProductionOrderSEQUOR.API.Models
     public partial class Production
     {
         [Key]
-        [Column("ID")]
-        public long Id { get; set; }
-        [Required]
+        [Column("id")]
+        public int Id { get; set; }
         [StringLength(100)]
         [Unicode(false)]
         public string Email { get; set; }
-        [Required]
-        [Column("OrderID")]
         [StringLength(50)]
         [Unicode(false)]
-        public string OrderId { get; set; }
+        public string Order { get; set; }
         [Column(TypeName = "datetime")]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
         [Column(TypeName = "numeric(18, 2)")]
-        public decimal Quantity { get; set; }
-        [Required]
+        public decimal? Quantity { get; set; }
         [StringLength(50)]
         [Unicode(false)]
         public string MaterialCode { get; set; }
         [Column(TypeName = "numeric(18, 2)")]
-        public decimal CycleTime { get; set; }
+        public decimal? CycleTime { get; set; }
 
-        [ForeignKey("Email")]
-        [InverseProperty("Production")]
         public virtual User EmailNavigation { get; set; }
-        [ForeignKey("OrderId")]
+        [ForeignKey("MaterialCode")]
         [InverseProperty("Production")]
-        public virtual Order Order { get; set; }
+        public virtual Material MaterialCodeNavigation { get; set; }
+        [ForeignKey("Order")]
+
+
+
+        public virtual Order OrderNavigation { get; set; }
     }
 }

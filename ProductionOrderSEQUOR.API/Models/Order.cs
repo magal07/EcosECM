@@ -16,18 +16,17 @@ namespace ProductionOrderSEQUOR.API.Models
         }
 
         [Key]
-        [Column("OrderID")]
+        [Column("Order")]
         [StringLength(50)]
         [Unicode(false)]
-        public string OrderId { get; set; }
+        public string Order1 { get; set; }
         [Column(TypeName = "numeric(18, 2)")]
-        public decimal Quantity { get; set; }
-        [Required]
+        public decimal? Quantity { get; set; }
         [StringLength(50)]
         [Unicode(false)]
         public string ProductCode { get; set; }
 
-        [InverseProperty("Order")]
+        [InverseProperty("OrderNavigation")]
         public virtual ICollection<Production> Production { get; set; }
     }
 }
