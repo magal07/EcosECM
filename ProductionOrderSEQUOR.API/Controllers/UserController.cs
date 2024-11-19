@@ -27,11 +27,14 @@ namespace ProductionOrderSEQUOR.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
-            return Ok(await _userRepository.SelecionarTodos());
+            var users = await _userRepository.SelecionarTodos();
+            var usersDTO = _mapper.Map<IEnumerable<UserDTO>> (users);
+            return Ok(usersDTO);
         }
         [HttpPost]
-        public async Task<ActionResult> CadastrarUser(User user)
+        public async Task<ActionResult> CadastrarUser(UserDTO userDTO)
         {
+            var user = _mapper.Map<User>(userDTO);
             _userRepository.Incluir(user);
             if (await _userRepository.SavellAsync())
             {

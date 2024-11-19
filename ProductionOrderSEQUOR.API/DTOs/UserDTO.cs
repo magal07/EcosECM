@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using ProductionOrderSEQUOR.API.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Runtime.ConstrainedExecution;
 
 
 // using System.Security.Claims;
@@ -11,22 +13,20 @@ namespace ProductionOrderSEQUOR.API.DTOs
 {
     public class UserDTO // Transferência de dados objetivos pelo DTO: DATA TRANSFER OBJECT 
     {
-        public string Name { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        [StringLength(50)]
-        [Unicode(false)]
+        [IgnoreDataMember]
         [Required]
-        [Key]
-        [Column("id")]
         public int Id { get; set; }
+
         [Required]
-        [StringLength(100)]
-        [Unicode(false)]
+        [StringLength(50,ErrorMessage = "O seu nome não pode ter mais de 50 caracteres.")]
+        public string Name { get; set; } = string.Empty;
 
-        
+        [Required]
+        [StringLength(100, ErrorMessage = "O seu Email não pode ter mais de 100 caracteres.")]
+        public string Email { get; set; } = string.Empty;
 
-        public virtual ICollection<Production> Production { get; set; } = new List<Production>();
-
+        // Remova propriedades desnecessárias ou aplique lógica quando necessário
+        // public virtual ICollection<Production> Production { get; set; } = new List<Production>(); -- CASO QUEIRA ACRESCENTAR INFO SOBRE A PRODUÇÃO
     }
 }
 
