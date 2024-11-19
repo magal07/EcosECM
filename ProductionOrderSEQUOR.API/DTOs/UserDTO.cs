@@ -18,12 +18,21 @@ namespace ProductionOrderSEQUOR.API.DTOs
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50,ErrorMessage = "O seu nome não pode ter mais de 50 caracteres.")]
+        [StringLength(50, ErrorMessage = "O seu nome não pode ter mais de 50 caracteres.")]
         public string Name { get; set; } = string.Empty;
 
         [Required]
         [StringLength(100, ErrorMessage = "O seu Email não pode ter mais de 100 caracteres.")]
         public string Email { get; set; } = string.Empty;
+
+        [Required]
+        [Column("CPF")]
+        [StringLength(11, ErrorMessage = "O seu cpf não pode ter mais de 11 caracteres.")]
+        [MinLength(11, ErrorMessage = "O seu cpf não pode ter mais de 11 caracteres.")]
+        [Unicode(false)]
+        public string Cpf { get; set; } = string.Empty;
+
+
 
         // Remova propriedades desnecessárias ou aplique lógica quando necessário
         // public virtual ICollection<Production> Production { get; set; } = new List<Production>(); -- CASO QUEIRA ACRESCENTAR INFO SOBRE A PRODUÇÃO

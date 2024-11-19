@@ -26,8 +26,6 @@ namespace ProductionOrderSEQUOR.API.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-
             modelBuilder.Entity<Material>(entity =>
             {
                 entity.HasKey(e => e.MaterialCode)

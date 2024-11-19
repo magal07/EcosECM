@@ -4,12 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-// using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 
 namespace ProductionOrderSEQUOR.API.Models
 {
-    [Index("Email", Name = "UQ__User__A9D1053455A341B6", IsUnique = true)]
+  //  [Index("Email", Name = "UQ__User__A9D1053455A341B6", IsUnique = true)]
     public partial class User
     {
         public User()
@@ -27,12 +26,23 @@ namespace ProductionOrderSEQUOR.API.Models
         [StringLength(50)]
         [Unicode(false)]
         public string Name { get; set; }
+        /*
+       [Column(TypeName = "datetime")]
+
+       public DateTime? InitialDate { get; set; }
+       [Column(TypeName = "datetime")]
+       public DateTime? EndDate { get; set; } */
+       
         [Column(TypeName = "datetime")]
-        public DateTime? InitialDate { get; set; }
+        public DateTime InitialDate { get; private set; } = DateTime.UtcNow; // Define automaticamente como a data atual
         [Column(TypeName = "datetime")]
-        public DateTime? EndDate { get; set; }
+        public DateTime EndDate { get; private set; } = DateTime.UtcNow; // Define automaticamente como a data atual 
+        [Column("CPF")]
+        [StringLength(11)]
+        [MinLength(11)]
+        [Unicode(false)]
+        public string Cpf { get; set; }
 
         public virtual ICollection<Production> Production { get; set; }
-       // public ClaimsIdentity UserName { get; internal set; }
     }
 }

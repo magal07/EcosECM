@@ -34,9 +34,7 @@ namespace ProductionOrderSEQUOR.API.Models
         [InverseProperty("Production")]
         public virtual Material MaterialCodeNavigation { get; set; }
         [ForeignKey("Order")]
-
-
-
+        [InverseProperty("Production")]
         public virtual Order OrderNavigation { get; set; }
     }
 }
