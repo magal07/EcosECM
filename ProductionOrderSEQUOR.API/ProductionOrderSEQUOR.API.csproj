@@ -27,4 +27,8 @@
     <None Include="efpt.config.json.user" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProductionOrdersSEQUOR.Infra.Ioc\ProductionOrdersSEQUOR.Infra.Ioc.csproj" />
+  </ItemGroup>
+
 </Project>

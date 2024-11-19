@@ -43,8 +43,20 @@ namespace ProductionOrderSEQUOR.API.Controllers
             return BadRequest("Ocorreu um erro ao salvar o usuário.");
         }
         [HttpPut]
-        public async Task<ActionResult> AlterarUser(User user)
+        public async Task<ActionResult> AlterarUser(UserDTO userDTO)
         {
+            if (userDTO.Id == 0)
+            {
+                return BadRequest("Não é possível alteraro usuário. É preciso informar o Id.");
+            }
+
+            var userExiste = await _userRepository.SelecionarByPk(userDTO.Id);
+            if (userExiste == null)
+            {
+                return NotFound("Usuário não encontrado!");
+            }
+
+            var user = _mapper.Map<User>(userDTO);
             _userRepository.Alterar(user);
             if (await _userRepository.SavellAsync())
             {
@@ -60,7 +72,7 @@ namespace ProductionOrderSEQUOR.API.Controllers
 
             if (user == null)
             {
-                return NotFound("Cliente não encontrado!");
+                return NotFound("Usuário não encontrado!");
             }
             _userRepository.Excluir(user);
             if (await _userRepository.SavellAsync())
