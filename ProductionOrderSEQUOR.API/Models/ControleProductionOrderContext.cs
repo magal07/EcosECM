@@ -21,8 +21,9 @@ namespace ProductionOrderSEQUOR.API.Models
         public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<Production> Production { get; set; }
+        public virtual DbSet<ProductMaterial> ProductMaterial { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,42 +43,29 @@ namespace ProductionOrderSEQUOR.API.Models
             {
                 entity.HasKey(e => e.ProductCode)
                     .HasName("PK__Product__2F4E024EF16DAE3E");
-
-                entity.HasMany(d => d.MaterialCode)
-                    .WithMany(p => p.ProductCode)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "ProductMaterial",
-                        l => l.HasOne<Material>().WithMany().HasForeignKey("MaterialCode").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__ProductMa__Mater__2B3F6F97"),
-                        r => r.HasOne<Product>().WithMany().HasForeignKey("ProductCode").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__ProductMa__Produ__2A4B4B5E"),
-                        j =>
-                        {
-                            j.HasKey("ProductCode", "MaterialCode").HasName("PK__ProductM__8E3EC7058AC94BB1");
-
-                            j.ToTable("ProductMaterial");
-
-                            j.IndexerProperty<string>("ProductCode").HasMaxLength(50).IsUnicode(false);
-
-                            j.IndexerProperty<string>("MaterialCode").HasMaxLength(50).IsUnicode(false);
-                        });
             });
 
-            modelBuilder.Entity<Production>(entity =>
+            modelBuilder.Entity<ProductMaterial>(entity =>
             {
-                entity.HasOne(d => d.EmailNavigation)
-                    .WithMany(p => p.Production)
-                    .HasPrincipalKey(p => p.Email)
-                    .HasForeignKey(d => d.Email)
-                    .HasConstraintName("FK__Productio__Email__30F848ED");
+                entity.HasKey(e => new { e.ProductCode, e.MaterialCode })
+                    .HasName("PK__ProductM__8E3EC7058AC94BB1");
 
                 entity.HasOne(d => d.MaterialCodeNavigation)
-                    .WithMany(p => p.Production)
+                    .WithMany(p => p.ProductMaterial)
                     .HasForeignKey(d => d.MaterialCode)
-                    .HasConstraintName("FK__Productio__Mater__32E0915F");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ProductMa__Mater__2B3F6F97");
 
-                entity.HasOne(d => d.OrderNavigation)
-                    .WithMany(p => p.Production)
-                    .HasForeignKey(d => d.Order)
-                    .HasConstraintName("FK__Productio__Order__31EC6D26");
+                entity.HasOne(d => d.ProductCodeNavigation)
+                    .WithMany(p => p.ProductMaterial)
+                    .HasForeignKey(d => d.ProductCode)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__ProductMa__Produ__2A4B4B5E");
+            });
+
+            modelBuilder.Entity<Usuario>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
             OnModelCreatingPartial(modelBuilder);

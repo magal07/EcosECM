@@ -8,21 +8,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProductionOrderSEQUOR.API.Models
 {
-    public partial class Product
+    public partial class ProductMaterial
     {
-        public Product()
-        {
-            ProductMaterial = new HashSet<ProductMaterial>();
-        }
-
         [Key]
         [StringLength(50)]
         [Unicode(false)]
         public string ProductCode { get; set; }
+        [Key]
+        [StringLength(50)]
+        [Unicode(false)]
+        public string MaterialCode { get; set; }
         [Column("id")]
         public int Id { get; set; }
 
-        [InverseProperty("ProductCodeNavigation")]
-        public virtual ICollection<ProductMaterial> ProductMaterial { get; set; }
+        [ForeignKey("MaterialCode")]
+        [InverseProperty("ProductMaterial")]
+        public virtual Material MaterialCodeNavigation { get; set; }
+        [ForeignKey("ProductCode")]
+        [InverseProperty("ProductMaterial")]
+        public virtual Product ProductCodeNavigation { get; set; }
     }
 }

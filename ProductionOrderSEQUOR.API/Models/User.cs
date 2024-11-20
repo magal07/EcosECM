@@ -8,41 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProductionOrderSEQUOR.API.Models
 {
-  //  [Index("Email", Name = "UQ__User__A9D1053455A341B6", IsUnique = true)]
     public partial class User
     {
-        public User()
-        {
-            Production = new HashSet<Production>();
-        }
-
         [Key]
         [Column("id")]
         public int Id { get; set; }
-        [Required]
-        [StringLength(100)]
-        [Unicode(false)]
-        public string Email { get; set; }
-        [StringLength(50)]
-        [Unicode(false)]
-        public string Name { get; set; }
-        /*
-       [Column(TypeName = "datetime")]
-
-       public DateTime? InitialDate { get; set; }
-       [Column(TypeName = "datetime")]
-       public DateTime? EndDate { get; set; } */
-       
-        [Column(TypeName = "datetime")]
-        public DateTime InitialDate { get; private set; } = DateTime.UtcNow; // Define automaticamente como a data atual
-        [Column(TypeName = "datetime")]
-        public DateTime EndDate { get; private set; } = DateTime.UtcNow; // Define automaticamente como a data atual 
         [Column("CPF")]
         [StringLength(11)]
-        [MinLength(11)]
         [Unicode(false)]
         public string Cpf { get; set; }
-
-        public virtual ICollection<Production> Production { get; set; }
     }
 }

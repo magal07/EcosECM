@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionOrdersSEQUOR.Infr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductionOrdersSEQUOR.Application", "ProductionOrdersSEQUOR.Application\ProductionOrdersSEQUOR.Application.csproj", "{3F7A5334-50D3-4430-B3FF-C82D61106FE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeraClasses", "GeraClasses\GeraClasses.csproj", "{C0FFDFA0-8B13-41AC-B4C5-BBAE92750919}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3F7A5334-50D3-4430-B3FF-C82D61106FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F7A5334-50D3-4430-B3FF-C82D61106FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F7A5334-50D3-4430-B3FF-C82D61106FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0FFDFA0-8B13-41AC-B4C5-BBAE92750919}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0FFDFA0-8B13-41AC-B4C5-BBAE92750919}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0FFDFA0-8B13-41AC-B4C5-BBAE92750919}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0FFDFA0-8B13-41AC-B4C5-BBAE92750919}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
