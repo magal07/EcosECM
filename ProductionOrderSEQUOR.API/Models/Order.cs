@@ -10,14 +10,28 @@ namespace ProductionOrderSEQUOR.API.Models
 {
     public partial class Order
     {
+        public Order()
+        {
+            Production = new HashSet<Production>();
+        }
+
         [Key]
         [Column("Order")]
         [StringLength(50)]
         [Unicode(false)]
         public string Order1 { get; set; }
-        [Column("id")]
-        public int Id { get; set; }
+        [Column(TypeName = "numeric(18, 2)")]
+        public decimal Quantity { get; set; }
+        [Required]
+        [StringLength(50)]
+        [Unicode(false)]
+        public string ProductCode { get; set; }
+        [Column("idOrder")]
+        public int IdOrder { get; set; }
         [Column("OrderID")]
         public int OrderId { get; set; }
+
+        [InverseProperty("OrderNavigation")]
+        public virtual ICollection<Production> Production { get; set; }
     }
 }

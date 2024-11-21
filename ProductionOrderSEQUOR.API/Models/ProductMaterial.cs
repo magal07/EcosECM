@@ -18,8 +18,8 @@ namespace ProductionOrderSEQUOR.API.Models
         [StringLength(50)]
         [Unicode(false)]
         public string MaterialCode { get; set; }
-        [Column("id")]
-        public int Id { get; set; }
+        [Column("idMaterial")]
+        public int IdMaterial { get; set; }
 
         [ForeignKey("MaterialCode")]
         [InverseProperty("ProductMaterial")]

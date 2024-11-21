@@ -9,7 +9,7 @@ namespace ProductionOrdersSEQUOR.Domain.Entities
         public string Email { get; private set; } = string.Empty;
         // public string Order { get; private set; } = string.Empty;
 
-        // public DateTime Date { get; private set; }
+         public DateTime Date { get; private set; }
 
         public decimal Quantity { get; private set; }
 
@@ -20,6 +20,8 @@ namespace ProductionOrdersSEQUOR.Domain.Entities
         public User? User { get; set; }
 
         public Order? Order { get; set; }
+
+       
 
 
         public Production(int id, string email, decimal quantity, string materialCode, decimal cycleTime)

@@ -19,9 +19,22 @@ namespace ProductionOrderSEQUOR.API.Models
         [StringLength(50)]
         [Unicode(false)]
         public string ProductCode { get; set; }
-        [Column("id")]
-        public int Id { get; set; }
+        [Required]
+        [StringLength(50)]
+        [Unicode(false)]
+        public string ProductDescription { get; set; }
+        [Required]
+        [StringLength(500)]
+        [Unicode(false)]
+        public string Image { get; set; }
+        [Column(TypeName = "numeric(18, 2)")]
+        public decimal CycleTime { get; set; }
+        [Column("idProduct")]
+        public int IdProduct { get; set; }
 
+        [ForeignKey("ProductCode")]
+        [InverseProperty("Product")]
+        public virtual Material ProductCodeNavigation { get; set; }
         [InverseProperty("ProductCodeNavigation")]
         public virtual ICollection<ProductMaterial> ProductMaterial { get; set; }
     }

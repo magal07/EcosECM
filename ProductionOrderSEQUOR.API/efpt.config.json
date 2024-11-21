@@ -15,27 +15,19 @@
    "T4TemplatePath": null,
    "Tables": [
       {
-         "ExcludedColumns": [
-            "MaterialDescription"
-         ],
          "Name": "[dbo].[Material]",
          "ObjectType": 0
       },
       {
-         "ExcludedColumns": [
-            "Quantity",
-            "ProductCode"
-         ],
          "Name": "[dbo].[Order]",
          "ObjectType": 0
       },
       {
-         "ExcludedColumns": [
-            "ProductDescription",
-            "Image",
-            "CycleTime"
-         ],
          "Name": "[dbo].[Product]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Production]",
          "ObjectType": 0
       },
       {
@@ -43,12 +35,6 @@
          "ObjectType": 0
       },
       {
-         "ExcludedColumns": [
-            "Email",
-            "Name",
-            "InitialDate",
-            "EndDate"
-         ],
          "Name": "[dbo].[User]",
          "ObjectType": 0
       },

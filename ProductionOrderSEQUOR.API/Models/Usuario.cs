@@ -11,8 +11,8 @@ namespace ProductionOrderSEQUOR.API.Models
     public partial class Usuario
     {
         [Key]
-        [Column("id")]
-        public int Id { get; set; }
+        [Column("idUsuario")]
+        public int IdUsuario { get; set; }
         [Required]
         [Column("nome")]
         [StringLength(250)]
