@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using ProductionOrderSEQUOR.API.Models;
 
 namespace ProductionOrdersSEQUOR.Domain.Entities
 {
@@ -22,8 +23,8 @@ namespace ProductionOrdersSEQUOR.Domain.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=Localhost;Database=ProductionOrder;User Id=sa;Password=S&QU0Rtec2024;");
+
             }
         }
 
@@ -38,7 +39,7 @@ namespace ProductionOrdersSEQUOR.Domain.Entities
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Cpf)
+                entity.Property(e => e.CPF)
                     .HasMaxLength(11)
                     .IsUnicode(false)
                     .HasColumnName("CPF");

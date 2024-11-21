@@ -14,6 +14,8 @@ namespace ProductionOrdersSEQUOR.Domain.Entities
 
         public string MaterialDescription { get; private set; } = string.Empty;
 
+     
+
         public Material(int id, string materialCode, string materialDescription)
         {
             DomainExceptionValidation.When(id < 0, "O Id do cliente deve ser positivo!");

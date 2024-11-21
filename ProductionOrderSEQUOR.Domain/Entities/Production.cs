@@ -17,6 +17,11 @@ namespace ProductionOrdersSEQUOR.Domain.Entities
 
         public decimal CycleTime { get; private set; }
 
+        public User? User { get; set; }
+
+        public Order? Order { get; set; }
+
+
         public Production(int id, string email, decimal quantity, string materialCode, decimal cycleTime)
         {
             DomainExceptionValidation.When(id < 0, "Id do produto deve ser positivo.");

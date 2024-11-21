@@ -44,10 +44,10 @@ namespace ProductionOrderSEQUOR.API.Controllers
         }
         [HttpPut]
         public async Task<ActionResult> AlterarUser(UserDTO userDTO)
-        {
+         {
             if (userDTO.Id == 0)
             {
-                return BadRequest("Não é possível alteraro usuário. É preciso informar o Id.");
+                return BadRequest("Não é possível alterar o usuário. É preciso informar o Id.");
             }
 
             var userExiste = await _userRepository.SelecionarByPk(userDTO.Id);

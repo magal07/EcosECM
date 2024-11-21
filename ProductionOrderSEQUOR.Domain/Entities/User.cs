@@ -17,6 +17,9 @@ namespace ProductionOrdersSEQUOR.Domain.Entities
         public DateTime EndDate { get; private set; }
         public string CPF { get; private set; } = string.Empty;
 
+
+        public ICollection<Production>? Productions { get;  set; }
+
         /* Organização do Construtor c/ ID */
 
         public User(int id, string email, string name, DateTime initialDate, DateTime endDate, string cpf)

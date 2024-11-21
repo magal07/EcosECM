@@ -12,6 +12,8 @@ namespace ProductionOrdersSEQUOR.Infra.Data.Context
     {
         protected ApplicationDbContext(DbContextOptions options) : base(options) { } 
 
+                                // PROPRIEDADES DAS MINHAS ENTIDADES // 
+
         public DbSet<User>? User { get; set; }
         public DbSet<ProductMaterial>? ProductionMaterial { get; set; }
         public DbSet<Production>? Production { get; set; }

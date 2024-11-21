@@ -1,6 +1,8 @@
-﻿namespace services
+﻿/* namespace services
 {
     internal class AddDbContext<T>
     {
     }
 }
+
+*/
