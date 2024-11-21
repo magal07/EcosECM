@@ -16,6 +16,7 @@ namespace ProductionOrdersSEQUOR.Infra.Data.EntitiesConfiguration
             builder.Property(x => x.CPF).HasMaxLength(11).IsRequired();
             builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
             builder.Property(x => x.Email).HasMaxLength(100).IsRequired();
+
         }
     }
 }

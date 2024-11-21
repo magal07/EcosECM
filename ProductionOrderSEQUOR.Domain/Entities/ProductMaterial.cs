@@ -14,6 +14,8 @@ namespace ProductionOrdersSEQUOR.Domain.Entities
         public string ProductCode { get; private set; } = string.Empty;
         public string MaterialCode { get; private set; } = string.Empty;
 
+        public int IDProductMaterial { get; set;  }
+
 
         public ProductMaterial(int id, string productCode, string materialCode)
         {

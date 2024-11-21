@@ -17,6 +17,8 @@ namespace ProductionOrdersSEQUOR.Domain.Entities
         public string Image { get; private set; } = string.Empty;
         public decimal CycleTime { get; private set; }
 
+        public int IDProdut { get; set; }
+
 
         public Product(int id, string productCode, string productDescription, string image, decimal cycleTime)
 

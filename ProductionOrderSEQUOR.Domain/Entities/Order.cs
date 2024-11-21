@@ -17,7 +17,9 @@ namespace ProductionOrdersSEQUOR.Domain.Entities
         public decimal Quantity { get; private set; }
         public string ProductCode { get; private set; } = string.Empty;
 
+        public int IDOrder { get; private set; } 
 
+        public ICollection<User>? Users { get; set; }
 
         public ICollection<Production>? Productions {  get;  set; }
 

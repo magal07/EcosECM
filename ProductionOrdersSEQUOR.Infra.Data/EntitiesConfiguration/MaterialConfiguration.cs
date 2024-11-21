@@ -9,17 +9,13 @@ using System.Threading.Tasks;
 
 namespace ProductionOrdersSEQUOR.Infra.Data.EntitiesConfiguration
 {
-    public class OrderConfiguration : IEntityTypeConfiguration<Order>
+    public class MaterialConfiguration : IEntityTypeConfiguration<Material>
     {
-        
-    
-public void Configure(EntityTypeBuilder<Order> builder)
+        public void Configure(EntityTypeBuilder<Material> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.IDOrder).IsRequired();
-            builder.Property(x => x.OrderID).IsRequired();
-            builder.Property(x => x.Quantity).IsRequired();
-            builder.Property(x => x.ProductCode).IsRequired();
+            builder.Property(x => x.MaterialCode).IsRequired();
+            builder.Property(x => x.MaterialDescription).IsRequired();
 
         }
     }

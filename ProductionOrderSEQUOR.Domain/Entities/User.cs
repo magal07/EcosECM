@@ -17,6 +17,7 @@ namespace ProductionOrdersSEQUOR.Domain.Entities
         public DateTime EndDate { get; private set; }
         public string CPF { get; private set; } = string.Empty;
 
+        public ICollection<Order>? Orders { get;  set; }
 
         public ICollection<Production>? Productions { get;  set; }
 
