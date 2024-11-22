@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using ProductionOrderSEQUOR.API.DTOs;
+// using ProductionOrderSEQUOR.API.DTOs;
 using ProductionOrderSEQUOR.API.Interfaces;
-using ProductionOrderSEQUOR.API.Models;
+// using ProductionOrderSEQUOR.API.Models;
 using ProductionOrderSEQUOR.API.Repositories;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +23,7 @@ namespace ProductionOrderSEQUOR.API.Controllers
             _userRepository = userRepository;
               
         }
-
+        /* 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
@@ -101,3 +101,4 @@ namespace ProductionOrderSEQUOR.API.Controllers
         }
     }
 }
+*/ 

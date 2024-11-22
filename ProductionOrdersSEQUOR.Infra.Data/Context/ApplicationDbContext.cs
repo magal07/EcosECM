@@ -10,7 +10,7 @@ namespace ProductionOrdersSEQUOR.Infra.Data.Context
 {
     public class ApplicationDbContext : DbContext
     {
-        protected ApplicationDbContext(DbContextOptions options) : base(options) { } 
+        public ApplicationDbContext(DbContextOptions options) : base(options) { } 
 
                                 // PROPRIEDADES DAS MINHAS ENTIDADES // 
 

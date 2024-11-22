@@ -1,15 +1,12 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using ProductionOrderSEQUOR.API.Models;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
-using System.Runtime.ConstrainedExecution;
 
 
 // using System.Security.Claims;
 
-namespace ProductionOrderSEQUOR.API.DTOs
+namespace ProductionOrdersSEQUOR.Application.DTOs
 {
     public class UserDTO // Transferência de dados objetivos pelo DTO: DATA TRANSFER OBJECT 
     {
