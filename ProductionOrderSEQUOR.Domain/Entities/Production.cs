@@ -5,7 +5,7 @@ namespace ProductionOrdersSEQUOR.Domain.Entities
 {
     public class Production
     {
-        public int Id { get; private set; }
+       public int Id { get; private set; }
         public string Email { get; private set; } = string.Empty;
         // public string Order { get; private set; } = string.Empty;
 

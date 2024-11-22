@@ -1,60 +1,46 @@
 ﻿using ProductionOrdersSEQUOR.Domain.Validation;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductionOrdersSEQUOR.Domain.Entities
 {
     public class Order
     {
-        public int Id { get; private set; }
-
-        public int OrderID { get; private set; }
+        public int Id { get; private set; } // Chave primária
 
         public decimal Quantity { get; private set; }
         public string ProductCode { get; private set; } = string.Empty;
 
-        public int IDOrder { get; private set; } 
-
+        // Relacionamentos
         public ICollection<User>? Users { get; set; }
+        public ICollection<Production>? Productions { get; set; }
 
-        public ICollection<Production>? Productions {  get;  set; }
-
-        public Order(int id, int orderID, decimal quantity, string productCode)
-
+        // Construtor com ID
+        public Order(int id, decimal quantity, string productCode)
         {
-            DomainExceptionValidation.When(id < 0, "O Id do Cliente deve ser positivo!");
-            OrderID = orderID;
-            Quantity = quantity;
-            ProductCode = productCode;
-            {
-                Id = id;
-                ValidateDomain(orderID, quantity, productCode);
-            }
-
-        }
-        public Order (int orderID, decimal quantity, string productCode)
-        {
-            ValidateDomain(orderID, quantity, productCode);
+            DomainExceptionValidation.When(id < 0, "O Id do Pedido deve ser positivo!");
+            Id = id;
+            ValidateDomain(quantity, productCode);
         }
 
-
-        
-        public void Update(int orderID, decimal quantity, string productCode)
+        // Construtor sem ID
+        public Order(decimal quantity, string productCode)
         {
-            ValidateDomain(orderID, quantity, productCode); 
-
+            ValidateDomain(quantity, productCode);
         }
-        public void ValidateDomain(int orderID, decimal quantity, string productCode)
-        {
-            DomainExceptionValidation.When(orderID < 0, "Null");
-            DomainExceptionValidation.When(quantity > 18, "Quantidade não pode ser superior a 18. Favor, incluir como novo ítem!");
-            DomainExceptionValidation.When(productCode.Length != 50, "O produto deve ter no máximo 50 caracteres");
 
-            OrderID = orderID;
+        // Método para atualizar dados da entidade
+        public void Update(decimal quantity, string productCode)
+        {
+            ValidateDomain(quantity, productCode);
+        }
+
+        // Validações do domínio
+        private void ValidateDomain(decimal quantity, string productCode)
+        {
+            DomainExceptionValidation.When(quantity <= 0, "A quantidade deve ser maior que zero!");
+            DomainExceptionValidation.When(quantity > 18, "A quantidade não pode ser superior a 18. Favor, incluir como novo item!");
+            DomainExceptionValidation.When(string.IsNullOrWhiteSpace(productCode) || productCode.Length > 50, "O código do produto deve ter no máximo 50 caracteres e não pode ser vazio.");
+
             Quantity = quantity;
             ProductCode = productCode;
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductionOrdersSEQUOR.Domain.Entities;
+using ProductionOrdersSEQUOR.Infra.Data.EntitiesConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace ProductionOrdersSEQUOR.Infra.Data.Context
 {
     public class ApplicationDbContext : DbContext
     {
-        protected ApplicationDbContext(DbContextOptions options) : base(options) { } 
+        public ApplicationDbContext(DbContextOptions options) : base(options) { } 
 
                                 // PROPRIEDADES DAS MINHAS ENTIDADES // 
 
@@ -18,7 +19,6 @@ namespace ProductionOrdersSEQUOR.Infra.Data.Context
         public DbSet<ProductMaterial>? ProductionMaterial { get; set; }
         public DbSet<Production>? Production { get; set; }
         public DbSet<Product>? Product { get; set; }
-        public DbSet<Order>? Order { get; set; }
         public DbSet<Material>? Material { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
