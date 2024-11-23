@@ -1,7 +1,7 @@
-﻿using ProductionOrdersSEQUOR.Domain.Validation;
+﻿using ProductionOrderSEQUOR.Domain.Validation;
 using System;
 
-namespace ProductionOrdersSEQUOR.Domain.Entities
+namespace ProductionOrderSEQUOR.Domain.Entities
 {
     public class Production
     {

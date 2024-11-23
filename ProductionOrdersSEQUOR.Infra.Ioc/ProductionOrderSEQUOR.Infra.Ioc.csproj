@@ -1,20 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ProductionOrderSEQUOR.Domain\ProductionOrdersSEQUOR.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DTOs\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
@@ -34,9 +24,16 @@
     <PackageReference Include="Microsoft.OpenApi" Version="1.6.22" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
     <PackageReference Include="System.Text.Json" Version="6.0.11" />
   </ItemGroup>
 
-
+  <ItemGroup>
+    <ProjectReference Include="..\ProductionOrderSEQUOR.Domain\ProductionOrderSEQUOR.Domain.csproj" />
+    <ProjectReference Include="..\ProductionOrdersSEQUOR.Application\ProductionOrderSEQUOR.Application.csproj" />
+    <ProjectReference Include="..\ProductionOrdersSEQUOR.Infra.Data\ProductionOrderSEQUOR.Infra.Data.csproj" />
+  </ItemGroup>
 
 </Project>

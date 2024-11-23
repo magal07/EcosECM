@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProductionOrdersSEQUOR.Domain.Entities;
+using ProductionOrderSEQUOR.Domain.Entities;
 using System;
 
-namespace ProductionOrdersSEQUOR.Infra.Data.EntitiesConfiguration
+namespace ProductionOrderSEQUOR.Infra.Data.EntitiesConfiguration
 {
     public class ProductionConfiguration : IEntityTypeConfiguration<Production>
     {

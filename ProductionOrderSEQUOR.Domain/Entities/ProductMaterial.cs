@@ -1,11 +1,11 @@
-﻿using ProductionOrdersSEQUOR.Domain.Validation;
+﻿using ProductionOrderSEQUOR.Domain.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionOrdersSEQUOR.Domain.Entities
+namespace ProductionOrderSEQUOR.Domain.Entities
 
 {
     public class ProductMaterial

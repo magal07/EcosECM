@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-//using ProductionOrderSEQUOR.Application.DTOs;
-// using ProductionOrderSEQUOR.Domain.Entities;
+using ProductionOrderSEQUOR.Application.DTOs;
+using ProductionOrderSEQUOR.Domain.Entities;
 
-namespace ProductionOrdersSEQUOR.Application.Mappings
+namespace ProductionOrderSEQUOR.Application.Mappings
 {
     public class DomainToDTOMappingProfile : Profile
     {

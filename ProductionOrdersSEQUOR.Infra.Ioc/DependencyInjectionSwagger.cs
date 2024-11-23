@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionOrdersSEQUOR.Infra.Ioc
+namespace ProductionOrderSEQUOR.Infra.Ioc
 {
     public static class DependencyInjectionSwagger
     {

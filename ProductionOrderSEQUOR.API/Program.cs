@@ -1,5 +1,5 @@
 using Microsoft.OpenApi.Models;
-using ProductionOrdersSEQUOR.Infra.Ioc;
+using ProductionOrderSEQUOR.Infra.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionOrdersSEQUOR.Domain.Validation
+namespace ProductionOrderSEQUOR.Domain.Validation
 {
     public class DomainExceptionValidation : Exception
     {

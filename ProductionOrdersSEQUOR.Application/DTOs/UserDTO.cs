@@ -3,10 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-
 // using System.Security.Claims;
 
-namespace ProductionOrdersSEQUOR.Application.DTOs
+namespace ProductionOrderSEQUOR.Application.DTOs
 {
     public class UserDTO // Transferência de dados objetivos pelo DTO: DATA TRANSFER OBJECT 
     {
@@ -40,10 +39,9 @@ namespace ProductionOrdersSEQUOR.Application.DTOs
 }
 
 
-/* 
- * 
- * 
- * [Key]
+ 
+  /* 
+  [Key]
         [Column("id")]
         public int Id { get; set; }
 
@@ -66,4 +64,4 @@ namespace ProductionOrdersSEQUOR.Application.DTOs
 
         public ClaimsIdentity? UserName { get; internal set; } // Tornado anulável.
 
-*/ 
+ */ 

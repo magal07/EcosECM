@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,12 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProductionOrderSEQUOR.Domain\ProductionOrdersSEQUOR.Domain.csproj" />
+    <ProjectReference Include="..\ProductionOrderSEQUOR.Domain\ProductionOrderSEQUOR.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
-    <Folder Include="Repositories\NovaPasta\" />
+    <Folder Include="DTOs\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,5 +34,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="System.Text.Json" Version="6.0.11" />
   </ItemGroup>
+
+
 
 </Project>

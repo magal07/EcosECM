@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProductionOrdersSEQUOR.Infra.Data.Context;
+using ProductionOrderSEQUOR.Infra.Data.Context;
 
 #nullable disable
 
-namespace ProductionOrdersSEQUOR.Infra.Data.Migrations
+namespace ProductionOrderSEQUOR.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20241122164228_InicialMigration")]

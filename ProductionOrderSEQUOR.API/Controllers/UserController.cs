@@ -1,104 +1,70 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-// using ProductionOrderSEQUOR.API.DTOs;
-using ProductionOrderSEQUOR.API.Interfaces;
-// using ProductionOrderSEQUOR.API.Models;
-using ProductionOrderSEQUOR.API.Repositories;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using ProductionOrderSEQUOR.Application.DTOs;
+using ProductionOrderSEQUOR.Application.Interfaces;
 
 namespace ProductionOrderSEQUOR.API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")] // CRIANDO ROTA
     public class UserController : Controller
     {
+        private readonly IUserService _userService;
 
-        private readonly IUserRepository _userRepository;
-        private readonly IMapper _mapper;
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
 
-        public UserController(IUserRepository userRepository, IMapper mapper)
-        {
-            _mapper = mapper;
-            _userRepository = userRepository;
-              
-        }
-        /* 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUser()
-        {
-            var users = await _userRepository.SelecionarTodos();
-            var usersDTO = _mapper.Map<IEnumerable<UserDTO>> (users);
-            return Ok(usersDTO);
-        }
         [HttpPost]
-        public async Task<ActionResult> CadastrarUser(UserDTO userDTO)
+        public async Task<ActionResult> Incluir(UserDTO userDTO)
+
         {
-            var user = _mapper.Map<User>(userDTO);
-            _userRepository.Incluir(user);
-            if (await _userRepository.SavellAsync())
+            var userDTOIncluido = await _userService.Incluir(userDTO);
+            if (userDTOIncluido == null)
             {
-                return Ok("Usuário cadastrado com sucesso!");
+                return BadRequest("Ocorreu um erro ao incluir o cliente");
             }
-            return BadRequest("Ocorreu um erro ao salvar o usuário.");
+            return Ok("Cliente incluído com sucesso!");
+
         }
         [HttpPut]
-        public async Task<ActionResult> AlterarUser(UserDTO userDTO)
-         {
-            if (userDTO.Id == 0)
-            {
-                return BadRequest("Não é possível alterar o usuário. É preciso informar o Id.");
-            }
+        public async Task<ActionResult> Alterar(UserDTO userDTO)
 
-            var userExiste = await _userRepository.SelecionarByPk(userDTO.Id);
-            if (userExiste == null)
+        {
+            var userDTOalterado = await _userService.Incluir(userDTO);
+            if (userDTOalterado == null)
             {
-                return NotFound("Usuário não encontrado!");
+                return BadRequest("Ocorreu um erro ao alterar o cliente");
             }
+            return Ok("Cliente alterado com sucesso!");
 
-            var user = _mapper.Map<User>(userDTO);
-            _userRepository.Alterar(user);
-            if (await _userRepository.SavellAsync())
-            {
-                return Ok("Usuário alterado com sucesso!");
-            }
-            return BadRequest("Ocorreu um erro ao alterar o usuário.");
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> ExcluirUser(int id)
-        {
-            var user = await _userRepository.SelecionarByPk(id);
+        public async Task<ActionResult> Excluir(int id)
 
-            if (user == null)
+        {
+            var userDTOExcluido = await _userService.Excluir(id);
+            if (userDTOExcluido == null)
             {
-                return NotFound("Usuário não encontrado!");
+                return BadRequest("Ocorreu um erro ao excluir o cliente.");
             }
-            _userRepository.Excluir(user);
-            if (await _userRepository.SavellAsync())
-            {
-                return Ok("Usuário excluído com sucesso!");
-            }
-            return BadRequest("Ocorreu um erro ao excluir o usuário.");
+            return Ok("Cliente excluido com sucesso!");
         }
-
         [HttpGet("{id}")]
+        public async Task<ActionResult> Selecionar(int id)
 
-        public async Task<ActionResult> SelecionarUser(int id)
         {
-            var user = await _userRepository.SelecionarByPk(id);
-
-            if (user == null)
+            var userDTO = await _userService.SelecionarAsync(id);
+            if (userDTO == null)
             {
-
-                return NotFound("User não encontrado.!");
+                return BadRequest("Cliente não encontrado.");
             }
-
-            var UserDTO = _mapper.Map<UserDTO>(user);
-
-            return Ok(UserDTO);
-
+            return Ok(userDTO);
+        }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<UserDTO>>> SelecionarTodos()
+        {
+            var userDTO = await _userService.SelecionarTodosAsync();
+            return Ok(userDTO);
         }
     }
 }
-*/ 

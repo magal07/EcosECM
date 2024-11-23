@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ProductionOrdersSEQUOR.Infra.Data.Migrations
+namespace ProductionOrderSEQUOR.Infra.Data.Migrations
 {
     public partial class InicialMigration : Migration
     {

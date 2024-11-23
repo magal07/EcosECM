@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProductionOrdersSEQUOR.Infra.Data.Context;
+using ProductionOrderSEQUOR.Infra.Data.Context;
 
 #nullable disable
 
-namespace ProductionOrdersSEQUOR.Infra.Data.Migrations
+namespace ProductionOrderSEQUOR.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

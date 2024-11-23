@@ -1,59 +1,77 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProductionOrderSEQUOR.API.Interfaces;
-using ProductionOrderSEQUOR.API.Models;
+using ProductionOrderSEQUOR.Application.Interfaces;
+using ProductionOrderSEQUOR.Application.Services;
+using ProductionOrderSEQUOR.Domain.Entities;
+using ProductionOrderSEQUOR.Domain.Interfaces;
+using ProductionOrderSEQUOR.Infra.Data.Context;
 
-namespace ProductionOrderSEQUOR.API.Repositories
+namespace ProductionOrderSEQUOR.Infra.Data.Repositories
 {
-    // MÉTODOS DA INTERFACE: 
-
     public class UserRepository : IUserRepository
     {
-        private readonly ControleProductionOrderContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public UserRepository(ControleProductionOrderContext context)
+        
+        public UserRepository(ApplicationDbContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public void Alterar(User user)
-        {
-            _context.Entry(user).State = EntityState.Modified;
-        }
-
-        public void Excluir(User user)
-        {
-            _context.User.Remove(user);
-        }
-
-        public void Incluir(User user)
+        /
+        public async Task<User> Incluir(User user)
         {
             _context.User.Add(user);
+            await _context.SaveChangesAsync();  
+            return user;  
         }
 
-        public async Task<bool> SavellAsync()
+        
+        public async Task<User> Alterar(User user)
         {
-            return await _context.SaveChangesAsync() > 0; // SE FOR MAIOR QUE 0, SALVOU A INSTÂNCIA, CASO CONTRÁRIO RETORNARÁ FALSE COM ALGUM ERRO! (Geralmente erro de DB)
+            _context.User.Update(user);
+            await _context.SaveChangesAsync();  
+            return user;  
         }
 
+        
+        public async Task<User> Excluir(int id)
+        {
+            var user = await _context.User.FindAsync(id);
+            if (user != null)
+            {
+                _context.User.Remove(user);
+                await _context.SaveChangesAsync();  
+            }
+            return user;  
+        }
+
+        
         public async Task<User> SelecionarByPk(int id)
         {
-            var user = await _context.User.Where(x => x.Id == id).FirstOrDefaultAsync();    // await -> se não ele retorna a task ao invés do usuário
+            var user = await _context.User.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (user == null)
             {
-                // Retorne um valor padrão, ou lançar uma exceção
-                // Por exemplo:
                 throw new Exception("Usuário não encontrado!");
             }
-
-            return user;
+            return user;  
         }
 
-        public async Task<IEnumerable<User>> SelecionarTodos()
+        
+        public async Task<IEnumerable<User>> SelecionarTodosAsync()
         {
-            return await _context.User.ToListAsync();
+            return await _context.User.ToListAsync();  
         }
 
-    }
+        
+        public async Task<bool> SaveAllAsync()
+        {
+            return await _context.SaveChangesAsync() > 0;  
+        }
 
+        public Task<User> SelecionarAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

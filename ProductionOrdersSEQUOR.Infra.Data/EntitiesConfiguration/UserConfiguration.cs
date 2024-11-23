@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProductionOrdersSEQUOR.Domain.Entities;
+using ProductionOrderSEQUOR.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductionOrdersSEQUOR.Infra.Data.EntitiesConfiguration
+namespace ProductionOrderSEQUOR.Infra.Data.EntitiesConfiguration
 {
     internal class UserConfiguration : IEntityTypeConfiguration<User>
     {

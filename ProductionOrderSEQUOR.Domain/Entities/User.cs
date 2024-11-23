@@ -1,8 +1,8 @@
-﻿using ProductionOrdersSEQUOR.Domain.Validation;
+﻿using ProductionOrderSEQUOR.Domain.Validation;
 using System;
 using System.Collections.Generic;
 
-namespace ProductionOrdersSEQUOR.Domain.Entities
+namespace ProductionOrderSEQUOR.Domain.Entities
 {
     public class User // RATIFICANDO QUE "User" é utilizado como "Cliente" ou ALGO/ALGUÉM EXTERNO! para Usuário, o banco é USUÁRIO
     {

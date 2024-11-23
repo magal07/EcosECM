@@ -1,18 +1,23 @@
-﻿using ProductionOrderSEQUOR.API.Models;
+﻿using ProductionOrderSEQUOR.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace ProductionOrderSEQUOR.API.Interfaces
-{
+
+ namespace ProductionOrderSEQUOR.Domain.Interfaces
+  {
     public interface IUserRepository
-    {
-        // WEB - INCLUIR / ALTERAR E EXCLUIR
+        {
+   
+            // FUNÇÕES // 
+    // WEB - INCLUIR / ALTERAR E EXCLUIR
 
-        void Incluir(User user);
-        void Alterar(User user);
-        void Excluir(User user);
-        Task<User> SelecionarByPk(int id);
-        Task<IEnumerable<User>> SelecionarTodos();
+    Task<User> Incluir(User userDTO);
+    Task<User> Alterar(User userDTO);
+    Task<User> Excluir(int id);
+    Task<User> SelecionarAsync(int id);
+    Task<IEnumerable<User>> SelecionarTodosAsync();
 
-        Task<bool> SavellAsync(); // mecanismo que vai salvar o método, sendo inclusão, alteração ou exclusão!
+    Task<bool> SaveAllAsync(); // mecanismo que vai salvar o método, sendo inclusão, alteração ou exclusão!
 
-    }
+   }
 }
