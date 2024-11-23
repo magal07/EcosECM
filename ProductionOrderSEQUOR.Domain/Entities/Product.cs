@@ -17,8 +17,9 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         public string Image { get; private set; } = string.Empty;
         public decimal CycleTime { get; private set; }
 
-        public int IDProdut { get; set; }
+        // public int IDProdut { get; set; }
 
+        public Product() { }
 
         public Product(int id, string productCode, string productDescription, string image, decimal cycleTime)
 
@@ -49,7 +50,7 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         {
             DomainExceptionValidation.When(productCode.Length != 50, "O produto deve ter no máximo 50 caracteres");
             DomainExceptionValidation.When(productDescription.Length != 50, "A descrição do produto deve ter no máximo 50 caracteres");
-            DomainExceptionValidation.When(image.Length != 50, "A imagem do produto deve ter no máximo 50 caracteres");
+            DomainExceptionValidation.When(image.Length != 5000, "A imagem do produto deve ter no máximo '50' caracteres");
             DomainExceptionValidation.When(cycleTime > 18, "O ciclo de tempo não pode ser maior que 18.");
 
             ProductCode = productCode;

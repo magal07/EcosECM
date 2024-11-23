@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IProductionService = ProductionOrderSEQUOR.Application.Interfaces.IProductionService;
 
 namespace ProductionOrderSEQUOR.Infra.Ioc
 {
@@ -52,17 +53,21 @@ namespace ProductionOrderSEQUOR.Infra.Ioc
                 };
             });
 
-        services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
+            services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
             // REPOSITORIES
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductionRepository, ProductionRepository>();
 
             // SERVICES
 
-            services.AddScoped<IUserService, UserService>(); // cliente
-            services.AddScoped<IUsuarioService, UsuarioService>(); // usuário
+            services.AddScoped<IUserService, UserService>(); // Clientes
+            services.AddScoped<IUsuarioService, UsuarioService>(); // Usuários
+            services.AddScoped<IProductService, ProductService>(); // Produtos
+            services.AddScoped<IProductionService, ProductionService>(); // Produtos
 
             // AUTHENTICATION
 

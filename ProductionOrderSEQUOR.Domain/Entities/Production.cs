@@ -11,15 +11,21 @@ namespace ProductionOrderSEQUOR.Domain.Entities
 
          public DateTime Date { get; private set; }
 
+        public DateTime DateEnd { get; private set; }
+
         public decimal Quantity { get; private set; }
 
         public string MaterialCode { get; private set; } = string.Empty;
 
         public decimal CycleTime { get; private set; }
 
-        public User? User { get; set; }
+        public User User { get; set; }
 
-        public Order? Order { get; set; }
+        public Product Product { get; set; }
+
+        public Order Order { get; set; }
+
+
 
        
 

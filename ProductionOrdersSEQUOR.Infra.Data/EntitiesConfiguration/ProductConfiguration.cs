@@ -14,7 +14,7 @@ namespace ProductionOrderSEQUOR.Infra.Data.EntitiesConfiguration
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.HasKey(x => x.ProductCode);
+            builder.Property(x => x.ProductCode);
             builder.Property(x => x.ProductDescription).IsRequired();
             builder.Property(x => x.Image).IsRequired();
            // builder.Property(x => x.IDProduct).IsRequired();
