@@ -11,13 +11,13 @@ using System.Threading.Tasks;
             // FUNÇÕES // 
     // WEB - INCLUIR / ALTERAR E EXCLUIR
 
-    Task<User> Incluir(User userDTO);
-    Task<User> Alterar(User userDTO);
+    Task<User> Incluir(User user);
+    Task<User> Alterar(User user);
     Task<User> Excluir(int id);
     Task<User> SelecionarAsync(int id);
     Task<IEnumerable<User>> SelecionarTodosAsync();
 
-    Task<bool> SaveAllAsync(); // mecanismo que vai salvar o método, sendo inclusão, alteração ou exclusão!
+    // Task<bool> SaveAllAsync(); // mecanismo que vai salvar o método, sendo inclusão, alteração ou exclusão!
 
    }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using ProductionOrderSEQUOR.Application.DTOs;
 using ProductionOrderSEQUOR.Application.Interfaces;
 using ProductionOrderSEQUOR.Domain.Entities;
@@ -21,7 +22,6 @@ namespace ProductionOrderSEQUOR.Application.Services
             _repository = repository;
             _mapper = mapper;
         }
-
 
         public async Task<UserDTO> Alterar(UserDTO userDTO)
         {
@@ -47,21 +47,11 @@ namespace ProductionOrderSEQUOR.Application.Services
         {
             var user = await _repository.SelecionarAsync(id);
             return _mapper.Map<UserDTO>(user);
-
         }
-
-
-        public async Task<IEnumerable<UserDTO>> SelecionarTodos()
+        public async Task<IEnumerable<UserDTO>> SelecionarTodosAsync()
         {
-            var user = await _repository.SelecionarTodosAsync();
-            return _mapper.Map<IEnumerable<UserDTO>>(user);
-
-        }
-                public Task<bool> SavellAsync()
-        {
-            throw new NotImplementedException();
-        }
-    
+            var users = await _repository.SelecionarTodosAsync();
+            return _mapper.Map<IEnumerable<UserDTO>>(users);
+        }   
     }
 }
-

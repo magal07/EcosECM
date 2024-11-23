@@ -18,7 +18,7 @@ namespace ProductionOrderSEQUOR.Infra.Data.Repositories
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        /
+        
         public async Task<User> Incluir(User user)
         {
             _context.User.Add(user);

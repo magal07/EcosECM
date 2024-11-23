@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using ProductionOrderSEQUOR.Application.Interfaces;
 using ProductionOrderSEQUOR.Application.Mappings;
 using ProductionOrderSEQUOR.Application.Services;
@@ -26,7 +28,29 @@ namespace ProductionOrderSEQUOR.Infra.Ioc
                     b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
             });
 
-            services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }
+            ).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuer = true, // validar qm gera o token
+                    ValidateAudience = true, // valida o destinatário
+                    ValidateLifetime = true, // tempo p/ o token ser validado
+                    ValidateIssuerSigningKey = true, // valida o login
+
+                    ValidIssuer = configuration["jwt:issuer"],
+                    ValidAudience = configuration["jwt:audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(configuration["jwt:secretKey"])),
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+
+        services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
             // REPOSITORIES
 

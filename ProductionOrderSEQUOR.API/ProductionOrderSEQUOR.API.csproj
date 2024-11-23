@@ -29,13 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="efpt.config.json.user" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ProductionOrdersSEQUOR.Application\ProductionOrderSEQUOR.Application.csproj" />
     <ProjectReference Include="..\ProductionOrdersSEQUOR.Infra.Ioc\ProductionOrderSEQUOR.Infra.Ioc.csproj" />
-    <ProjectReference Include="..\ProductionOrdersSEQUOR.Infra.Ioc\ProductionOrdersSEQUOR.Infra.Ioc.csproj" />
 	  
   </ItemGroup>
 
