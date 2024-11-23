@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using ProductionOrderSEQUOR.API.Models;
 using ProductionOrderSEQUOR.Application.DTOs;
 using ProductionOrderSEQUOR.Application.Interfaces;
 using System.Collections.Generic;
@@ -19,6 +21,7 @@ namespace ProductionOrderSEQUOR.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> Incluir(UserDTO userDTO)
         {
             var userDTOIncluido = await _userService.Incluir(userDTO);
@@ -68,6 +71,6 @@ namespace ProductionOrderSEQUOR.API.Controllers
             var usersDTO = await _userService.SelecionarTodosAsync();
 
             return Ok(usersDTO);
-        }
+        }    
     }
 }

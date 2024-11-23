@@ -10,10 +10,10 @@ namespace ProductionOrderSEQUOR.Domain.Entities
     public class Usuario
     {
         public int Id { get; private set; }
-        public string Name { get; private set; }
-        public string Email { get; private set; }
-        public byte[] passwordHash { get; private set; }   
-        public byte[] passwordSalt { get; private set; }
+        public string Name { get;  set; }
+        public string Email { get;  set; }
+        public byte[] PasswordHash { get; private set; }   
+        public byte[] PasswordSalt { get; private set; }
 
         public Usuario(int id, string name, string email)
         {

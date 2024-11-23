@@ -9,6 +9,7 @@ namespace ProductionOrderSEQUOR.Application.Mappings
         public DomainToDTOMappingProfile()
         {
             CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<Usuario, UsuarioDTO>().ReverseMap();
         }
     }
 }

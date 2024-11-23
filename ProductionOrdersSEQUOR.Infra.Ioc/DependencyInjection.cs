@@ -6,8 +6,10 @@ using Microsoft.IdentityModel.Tokens;
 using ProductionOrderSEQUOR.Application.Interfaces;
 using ProductionOrderSEQUOR.Application.Mappings;
 using ProductionOrderSEQUOR.Application.Services;
+using ProductionOrderSEQUOR.Domain.Account;
 using ProductionOrderSEQUOR.Domain.Interfaces;
 using ProductionOrderSEQUOR.Infra.Data.Context;
+using ProductionOrderSEQUOR.Infra.Data.Identity;
 using ProductionOrderSEQUOR.Infra.Data.Repositories;
 using System;
 using System.Collections.Generic;
@@ -55,10 +57,16 @@ namespace ProductionOrderSEQUOR.Infra.Ioc
             // REPOSITORIES
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             // SERVICES
 
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserService, UserService>(); // cliente
+            services.AddScoped<IUsuarioService, UsuarioService>(); // usuário
+
+            // AUTHENTICATION
+
+            services.AddScoped<IAuthenticate, AuthenticateService>();
 
             return services;
         }

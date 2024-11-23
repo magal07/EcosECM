@@ -4,6 +4,8 @@ using ProductionOrderSEQUOR.Application.Interfaces;
 using ProductionOrderSEQUOR.Domain.Entities;
 using ProductionOrderSEQUOR.Domain.Interfaces;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ProductionOrderSEQUOR.Application.Services
@@ -35,6 +37,16 @@ namespace ProductionOrderSEQUOR.Application.Services
         public async Task<UsuarioDTO> Incluir(UsuarioDTO usuarioDTO)
         {
             var usuario = _mapper.Map<Usuario>(usuarioDTO);
+
+            if (usuarioDTO.Password != null)
+            {
+                using var hmac = new HMACSHA512();
+                byte[] passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(usuarioDTO.Password));
+                byte[] passowordSalt = hmac.Key;
+
+                usuario.AlterarSenha(passwordHash, passowordSalt);   
+            }
+
             var usuarioIncluido = await _repository.Incluir(usuario);
             return _mapper.Map<UsuarioDTO>(usuarioIncluido);
         }
