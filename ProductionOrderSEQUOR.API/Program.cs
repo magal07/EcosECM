@@ -24,6 +24,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthorization();
+app.UseAuthentication(); // VERFICAR AUTENTICAÇÃO
+app.UseAuthorization(); // USUÁRIO AUTENTICADO
+
+
+
 app.MapControllers();
 app.Run();

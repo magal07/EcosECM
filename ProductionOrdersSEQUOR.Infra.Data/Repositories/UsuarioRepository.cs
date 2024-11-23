@@ -71,9 +71,9 @@ namespace ProductionOrderSEQUOR.Infra.Data.Repositories
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public Task<Usuario> SelecionarAsync(int id)
+        public async Task<Usuario> SelecionarAsync(int id)
         {
-            throw new NotImplementedException();
+           return await _context.Usuario.FirstOrDefaultAsync( u => u.Id == id);
         }
     }
 }

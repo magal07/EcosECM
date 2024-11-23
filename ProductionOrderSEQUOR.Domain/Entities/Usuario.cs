@@ -12,6 +12,7 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         public int Id { get; private set; }
         public string Name { get;  set; }
         public string Email { get;  set; }
+        public bool IsAdmin { get; private set; }
         public byte[] PasswordHash { get; private set; }   
         public byte[] PasswordSalt { get; private set; }
 
@@ -20,16 +21,22 @@ namespace ProductionOrderSEQUOR.Domain.Entities
             DomainExceptionValidation.When(id < 0, "O id não pode ser negativo.");
             Id = id;
             ValidateDomain(name, email);
+            
         }
         public Usuario(string name, string email)
         {
             ValidateDomain(name, email);
         }
 
+        public void SetAdmin(bool isAdmin)
+        {
+            IsAdmin = isAdmin;
+        }
+
         public void AlterarSenha(byte[] passwordHash, byte[] passwordSalt)
         {
-            passwordHash = passwordHash;
-            passwordSalt = passwordSalt;
+            PasswordHash = passwordHash;
+            PasswordSalt = passwordSalt;
         }
 
         private void ValidateDomain(string name, string email)
@@ -41,7 +48,8 @@ namespace ProductionOrderSEQUOR.Domain.Entities
             DomainExceptionValidation.When(email.Length > 200, "O email não pode ultrapassar 250 caracteres.");
 
             Name = name;
-            Email = email;  
+            Email = email;
+            IsAdmin = false;
         }
     }
 }

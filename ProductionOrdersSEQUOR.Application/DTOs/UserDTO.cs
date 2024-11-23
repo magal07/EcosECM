@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 // using System.Security.Claims;
 
@@ -28,6 +29,9 @@ namespace ProductionOrderSEQUOR.Application.DTOs
         [Required]
         [StringLength(100, ErrorMessage = "O seu Email não pode ter mais de 100 caracteres.")]
         public string Email { get; set; } = string.Empty;
+
+        [JsonIgnore]
+        public bool IsAdmin { get; set; }
 
         
 

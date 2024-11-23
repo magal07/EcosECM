@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProductionOrderSEQUOR.API.Models;
 using ProductionOrderSEQUOR.Application.DTOs;
 using ProductionOrderSEQUOR.Application.Interfaces;
+using ProductionOrderSEQUOR.Infra.Ioc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,18 +11,21 @@ namespace ProductionOrderSEQUOR.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize] // -> só usuários autenticados conseguirão acessar clientes e gerar mudanças
 
     public class UserController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IUsuarioService _usuarioService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IUsuarioService usuarioService)
         {
             _userService = userService;
+            _usuarioService = usuarioService;   
         }
 
         [HttpPost]
-        [Authorize]
+        
         public async Task<ActionResult> Incluir(UserDTO userDTO)
         {
             var userDTOIncluido = await _userService.Incluir(userDTO);
@@ -33,6 +37,7 @@ namespace ProductionOrderSEQUOR.API.Controllers
         }
 
         [HttpPut]
+
         public async Task<ActionResult> Alterar(UserDTO userDTO)
         {
             var userDTOalterado = await _userService.Alterar(userDTO);
@@ -43,9 +48,17 @@ namespace ProductionOrderSEQUOR.API.Controllers
             return Ok("Cliente alterado com sucesso!");
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<ActionResult> Excluir(int id)
         {
+            var userId = User.GetId();
+
+            var usuario = await _usuarioService.SelecionarAsync(userId);
+            if (!usuario.IsAdmin)
+            {
+                return Unauthorized("Você não tem permissão para excluir clientes!");
+            }
+
             var userDTOExcluido = await _userService.Excluir(id);
             if (userDTOExcluido == null)
             {

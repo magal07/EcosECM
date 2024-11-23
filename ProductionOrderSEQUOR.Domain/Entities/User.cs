@@ -1,6 +1,7 @@
 ﻿using ProductionOrderSEQUOR.Domain.Validation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProductionOrderSEQUOR.Domain.Entities
 {
@@ -9,8 +10,11 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         public int Id { get; private set; }
         public string Email { get; private set; } = string.Empty;
         public string Name { get; private set; } = string.Empty;
-        public DateTime InitialDate { get; private set; }
-        public DateTime EndDate { get; private set; }
+
+        [Column(TypeName = "datetime")]
+        public DateTime InitialDate { get; private set; } = DateTime.UtcNow; // Define automaticamente como a data atual
+        [Column(TypeName = "datetime")]
+        public DateTime EndDate { get; private set; } = DateTime.UtcNow; // Define automaticamente como a data atual
         public string CPF { get; private set; } = string.Empty;
 
         public ICollection<Order>? Orders { get; set; }

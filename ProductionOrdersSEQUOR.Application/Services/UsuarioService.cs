@@ -42,9 +42,9 @@ namespace ProductionOrderSEQUOR.Application.Services
             {
                 using var hmac = new HMACSHA512();
                 byte[] passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(usuarioDTO.Password));
-                byte[] passowordSalt = hmac.Key;
+                byte[] passwordSalt = hmac.Key;
 
-                usuario.AlterarSenha(passwordHash, passowordSalt);   
+                usuario.AlterarSenha(passwordHash, passwordSalt);   
             }
 
             var usuarioIncluido = await _repository.Incluir(usuario);

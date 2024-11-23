@@ -44,18 +44,19 @@ namespace ProductionOrderSEQUOR.Infra.Data.Identity
             }
             return true;
         }
-        public string GenerateToken(int id, string email)
+        public string GenerateToken(int id, string email) // id e email gravados na claim abaixo e a lista de claims fica no token JWT
         {
             var claims = new[]
             {
                 new Claim("id", id.ToString()),
-                new Claim("email", email),
+                new Claim("email", email.ToLower()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
+
             var privateKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes
                 (_configuration["jwt:secretKey"]));
 
-            var credentials = new SigningCredentials(privateKey, SecurityAlgorithms.HmacSha512);
+            var credentials = new SigningCredentials(privateKey, SecurityAlgorithms.HmacSha256);
 
             var expiration = DateTime.UtcNow.AddMinutes(10);
 
@@ -72,8 +73,7 @@ namespace ProductionOrderSEQUOR.Infra.Data.Identity
 
         public async Task<Usuario> GetUserByEmail(string email)
         {
-            return await _context.Usuario.Where
-                (x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
+            return await _context.Usuario.Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
         }
 
         public async Task<bool> UserExists(string email)

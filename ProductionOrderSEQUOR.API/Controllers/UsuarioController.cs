@@ -55,13 +55,15 @@ namespace ProductionOrderSEQUOR.API.Controllers
                 {
                     return Unauthorized("Usuário não existe!");   // validação do user
                 }
-                var result = await _authenticateService.AuthenticateAsync(loginModel.Email, loginModel.Password);
-            if (result)
+
+            var result = await _authenticateService.AuthenticateAsync(loginModel.Email, loginModel.Password);
+            if (!result) 
             {
                 return Unauthorized("Usuário ou senha inválido.");
             }
             var usuario = await _authenticateService.GetUserByEmail(loginModel.Email);
             var token = _authenticateService.GenerateToken(usuario.Id, usuario.Email);
+
             return new UserToken
             {
                 Token = token
