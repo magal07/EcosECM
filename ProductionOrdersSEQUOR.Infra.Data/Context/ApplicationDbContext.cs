@@ -25,12 +25,12 @@ namespace ProductionOrderSEQUOR.Infra.Data.Context
 
         // public DbSet<Order> Order { get; set; } removida
 
-
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly); 
+
+
         }
     }
 }

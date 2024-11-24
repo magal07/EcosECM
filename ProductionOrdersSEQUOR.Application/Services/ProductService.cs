@@ -12,10 +12,10 @@ using System.Threading.Tasks;
 namespace ProductionOrderSEQUOR.Application.Services
 {
     public class ProductService : IProductService
-
     {
+
         private readonly IProductRepository _repository;
-    private readonly IMapper _mapper;
+        private readonly IMapper _mapper;
 
         public ProductService(IProductRepository repository, IMapper mapper)
         {
@@ -39,6 +39,12 @@ namespace ProductionOrderSEQUOR.Application.Services
         public async Task<ProductDTO> Incluir(ProductDTO productDTO)
         {
             var product = _mapper.Map<Product>(productDTO);
+            /*
+            product.CycleTime = 1.23M;
+            if (product.CycleTime <= 0)
+            {
+                product.CycleTime = 0.01M; // Valor mínimo válido */
+            
             var productIncluido = await _repository.Incluir(product);
             return _mapper.Map<ProductDTO>(productIncluido);
         }

@@ -6,10 +6,10 @@ using ProductionOrderSEQUOR.Infra.Ioc;
 namespace ProductionOrderSEQUOR.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] 
     public class ProductController : Controller
-    {
 
+    {
         private readonly IProductService _productService;
 
         public ProductController(IProductService productService)
@@ -24,9 +24,9 @@ namespace ProductionOrderSEQUOR.API.Controllers
             var productDTOIncluido = await _productService.Incluir(productDTO);
             if (productDTOIncluido == null)
             {
-                return BadRequest("Ocorreu um erro ao incluir o produto");
+                return BadRequest("Ocorreu um erro ao incluir o cliente");
             }
-            return Ok("Produto incluído com sucesso!");
+            return Ok("Cliente incluído com sucesso!");
         }
 
         [HttpPut]
@@ -36,21 +36,21 @@ namespace ProductionOrderSEQUOR.API.Controllers
             var productDTOalterado = await _productService.Alterar(productDTO);
             if (productDTOalterado == null)
             {
-                return BadRequest("Ocorreu um erro ao alterar o produto");
+                return BadRequest("Ocorreu um erro ao alterar o cliente");
             }
-            return Ok("Produto alterado com sucesso!");
+            return Ok("Cliente alterado com sucesso!");
         }
 
         [HttpDelete]
         public async Task<ActionResult> Excluir(int id)
-        {
-          
+        {            
+
             var productDTOExcluido = await _productService.Excluir(id);
             if (productDTOExcluido == null)
             {
-                return BadRequest("Ocorreu um erro ao excluir o produto.");
+                return BadRequest("Ocorreu um erro ao excluir o cliente.");
             }
-            return Ok("Produto excluido com sucesso!");
+            return Ok("Cliente excluido com sucesso!");
         }
 
         [HttpGet("{id}")]
@@ -59,7 +59,7 @@ namespace ProductionOrderSEQUOR.API.Controllers
             var productDTO = await _productService.SelecionarAsync(id);
             if (productDTO == null)
             {
-                return BadRequest("Produto não encontrado.");
+                return BadRequest("Cliente não encontrado.");
             }
             return Ok(productDTO);
         }
@@ -70,6 +70,7 @@ namespace ProductionOrderSEQUOR.API.Controllers
             var productsDTO = await _productService.SelecionarTodosAsync();
 
             return Ok(productsDTO);
-        }
+        
+     }
     }
 }

@@ -24,9 +24,9 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         // Construtor padrão necessário para o AutoMapper
         public Production()
         {
-            // Inicialize as propriedades com valores padrão
-            Email = string.Empty;
-            MaterialCode = string.Empty;
+            //// Inicialize as propriedades com valores padrão
+            //Email = string.Empty;
+            //MaterialCode = string.Empty;
         }
 
         // Construtor com parâmetros para inicialização completa

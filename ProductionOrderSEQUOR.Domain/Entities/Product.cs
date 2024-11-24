@@ -12,14 +12,12 @@ namespace ProductionOrderSEQUOR.Domain.Entities
     {
 
         public int Id { get; private set; }
-        public string ProductCode { get; private set; } = string.Empty;
-        public string ProductDescription { get; private set; } = string.Empty;
-        public string Image { get; private set; } = string.Empty;
-        public decimal CycleTime { get; private set; }
+        public string ProductCode { get; private set; } 
+        public string ProductDescription { get; private set; } 
+        public string Image { get; private set; } 
+        public decimal CycleTime { get;  set; }
 
         public ICollection<Production> Productions { get; set; }
-
-        // public int IDProdut { get; set; }
 
         public Product() // vazio para dar continuidade 
         {
@@ -52,10 +50,10 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         }
         public void ValidateDomain(string productCode, string productDescription, string image, decimal cycleTime)
         {
-            DomainExceptionValidation.When(productCode.Length != 50, "O produto deve ter no máximo 50 caracteres");
-            DomainExceptionValidation.When(productDescription.Length != 50, "A descrição do produto deve ter no máximo 50 caracteres");
-            DomainExceptionValidation.When(image.Length != 5000, "A imagem do produto deve ter no máximo '50' caracteres");
-            DomainExceptionValidation.When(cycleTime > 18, "O ciclo de tempo não pode ser maior que 18.");
+            DomainExceptionValidation.When(productCode.Length > 200, "O produto deve ter no máximo 200 caracteres");
+            DomainExceptionValidation.When(productDescription.Length > 250, "A descrição do produto deve ter no máximo 250 caracteres");
+            DomainExceptionValidation.When(image.Length > 500, "A imagem do produto deve ter no máximo '500' caracteres");
+            DomainExceptionValidation.When(cycleTime <= 0, "O ciclo de tempo deve ser maior que zero.");
 
             ProductCode = productCode;
             ProductDescription = productDescription;
