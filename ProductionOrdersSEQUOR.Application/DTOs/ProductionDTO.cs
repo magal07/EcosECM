@@ -17,14 +17,14 @@ namespace ProductionOrderSEQUOR.Application.DTOs
 
         public int ProIdProduct { get; set; }
 
-        public string MaterialCode { get; set; } = string.Empty;
+      //  public string MaterialCode { get; set; } = string.Empty;
 
 
         public UserDTO UserDTO { get; set; }
 
         public ProductDTO ProductDTO { get; set; }
 
-        /*
+       
         public string Email { get;  set; } = string.Empty;
         // public string Order { get;  set; } = string.Empty;
 
@@ -33,7 +33,6 @@ namespace ProductionOrderSEQUOR.Application.DTOs
         public DateTime DateEnd { get;  set; }
         public decimal Quantity { get;  set; }
         public decimal CycleTime { get;  set; }
-            */
 
 
 

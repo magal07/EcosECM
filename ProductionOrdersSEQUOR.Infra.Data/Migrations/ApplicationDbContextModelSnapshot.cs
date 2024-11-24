@@ -93,8 +93,8 @@ namespace ProductionOrderSEQUOR.Infra.Data.Migrations
                     b.Property<decimal>("CycleTime")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("IDProdut")
-                        .HasColumnType("int");
+                    // b.Property<int>("IDProdut")
+                      //  .HasColumnType("int");
 
                     b.Property<int>("Id")
                         .HasColumnType("int");

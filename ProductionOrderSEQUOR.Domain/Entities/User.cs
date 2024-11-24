@@ -17,7 +17,6 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         public DateTime EndDate { get; private set; } = DateTime.UtcNow; // Define automaticamente como a data atual
         public string CPF { get; private set; } = string.Empty;
 
-        // public ICollection<Order> Orders { get; set; }
         public ICollection<Production> Productions { get; set; }
 
         // Construtor padrão

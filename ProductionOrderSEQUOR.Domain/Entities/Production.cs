@@ -9,7 +9,7 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         public int Id { get; private set; }
         public int ProIdUser { get; private set; }
         public int ProIdProduct { get; private set; }
-        public string Email { get; private set; } = string.Empty;
+        public string Email { get; private set; } 
         public DateTime Date { get; private set; }
         public DateTime DateEnd { get; private set; }
         public decimal Quantity { get; private set; }

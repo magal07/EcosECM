@@ -13,11 +13,11 @@ namespace ProductionOrderSEQUOR.Application.DTOs
 
         [MaxLength(ErrorMessage = "Máximo de 50 caracteres")]
         [Required(ErrorMessage = "O código do produto é obrigatório!")]
-        public string ProductCode { get; set; } = string.Empty;
+        public string ProductCode { get; set; }
 
         [MaxLength(ErrorMessage = "Máximo de 200 caracteres")]
         [Required(ErrorMessage = "A descrição do produto é obrigatória!")]
-        public string ProductDescription { get; set; } = string.Empty;
+        public string ProductDescription { get; set; }
 
 
         /* [Required(ErrorMessage = "Erro CycleTime, verifique o ítem <ProductDTO.cs>")]

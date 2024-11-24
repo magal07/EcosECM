@@ -52,7 +52,7 @@ namespace ProductionOrderSEQUOR.Infra.Data.Repositories
             var product = await _context.Product.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (product == null)
             {
-                throw new Exception("Usuário não encontrado!");
+                throw new Exception("Product não encontrado!");
             }
             return product;
         }

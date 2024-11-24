@@ -21,8 +21,10 @@ namespace ProductionOrderSEQUOR.Domain.Entities
 
         // public int IDProdut { get; set; }
 
-        public Product() { }
+        public Product() // vazio para dar continuidade 
+        {
 
+        }
         public Product(int id, string productCode, string productDescription, string image, decimal cycleTime)
 
         {

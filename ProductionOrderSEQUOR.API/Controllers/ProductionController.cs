@@ -26,9 +26,9 @@ namespace PproductionOrderSEQUOR.API.Controllers
             var productionDTOIncluido = await _productionService.Incluir(productionPostDTO);
             if (productionDTOIncluido == null)
             {
-                return BadRequest("Ocorreu um erro ao incluir o cliente");
+                return BadRequest("Ocorreu um erro ao incluir a produção");
             }
-            return Ok("Cliente incluído com sucesso!"); 
+            return Ok("Produção incluída com sucesso!"); 
             }
 
         [HttpPut]
@@ -46,14 +46,6 @@ namespace PproductionOrderSEQUOR.API.Controllers
         [HttpDelete]
         public async Task<ActionResult> Excluir(int id)
         {
-            /*var productionId = Production.GetId();
-
-            var usuario = await _usuarioService.SelecionarAsync(productionId);
-            if (!usuario.IsAdmin)
-            {
-                return Unauthorized("Você não tem permissão para excluir clientes!");
-            }
-            */ 
 
             var productionDTOExcluido = await _productionService.Excluir(id);
             if (productionDTOExcluido == null)

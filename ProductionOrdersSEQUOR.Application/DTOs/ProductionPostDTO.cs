@@ -24,8 +24,8 @@ namespace ProductionOrderSEQUOR.Application.DTOs
         [Range(1, int.MaxValue, ErrorMessage = "Quantidade inválida. ")]
         public decimal Quantity { get; set; }
 
-       
-        [Required(ErrorMessage = "Informe o código do material. ")]
+        
+        //[Required(ErrorMessage = "Informe o código do material. ")]
         [Range(1, int.MaxValue, ErrorMessage = "Quantidade inválida. ")]
         public string MaterialCode { get; set; } = string.Empty; 
 

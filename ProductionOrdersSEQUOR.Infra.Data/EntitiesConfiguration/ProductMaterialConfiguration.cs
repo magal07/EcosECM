@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿/* using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProductionOrderSEQUOR.Domain.Entities;
 using System;
@@ -20,3 +20,4 @@ namespace ProductionOrderSEQUOR.Infra.Data.EntitiesConfiguration
         }
     }
 }
+*/ 
