@@ -7,8 +7,7 @@ using ProductionOrderSEQUOR.Application.Interfaces;
 namespace PproductionOrderSEQUOR.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    [Authorize] // -> só usuários autenticados conseguirão acessar clientes e gerar mudanças
+    [Route("api/[controller]")] // -> só usuários autenticados conseguirão acessar clientes e gerar mudanças
     public class ProductionController : Controller
     {
 
@@ -22,21 +21,14 @@ namespace PproductionOrderSEQUOR.API.Controllers
         [HttpPost]
 
         public async Task<ActionResult> Incluir(ProductionPostDTO productionPostDTO)
-        {
-            productionPostDTO.Date = productionPostDTO.Date;
-            productionPostDTO.DateEnd = DateTime.Now;
-
-            TimeSpan duration = productionPostDTO.DateEnd - 
-                productionPostDTO.Date; Console.WriteLine($"Tempo de cadastro: " +
-                                $"{duration.TotalSeconds} segundos");
+        { 
 
             var productionDTOIncluido = await _productionService.Incluir(productionPostDTO);
             if (productionDTOIncluido == null)
             {
                 return BadRequest("Ocorreu um erro ao incluir o cliente");
             }
-                return Ok($"Cliente incluído com sucesso! Tempo de cadastro: " +
-                            $"{duration.TotalSeconds} segundos");
+            return Ok("Cliente incluído com sucesso!"); 
             }
 
         [HttpPut]

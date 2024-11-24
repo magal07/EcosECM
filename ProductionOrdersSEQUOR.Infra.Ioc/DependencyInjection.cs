@@ -69,6 +69,7 @@ namespace ProductionOrderSEQUOR.Infra.Ioc
             services.AddScoped<IProductService, ProductService>(); // Produtos
             services.AddScoped<IProductionService, ProductionService>(); // Produtos
 
+
             // AUTHENTICATION
 
             services.AddScoped<IAuthenticate, AuthenticateService>();

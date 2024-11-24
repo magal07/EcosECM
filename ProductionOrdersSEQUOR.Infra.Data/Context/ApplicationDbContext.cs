@@ -14,14 +14,16 @@ namespace ProductionOrderSEQUOR.Infra.Data.Context
 
                                 // PROPRIEDADES DAS MINHAS ENTIDADES // 
 
-        public DbSet<User>? User { get; set; }
-        public DbSet<ProductMaterial>? ProductionMaterial { get; set; }
-        public DbSet<Production>? Production { get; set; }
-        public DbSet<Product>? Product { get; set; }
-        public DbSet<Order>? Order { get; set; }
-        public DbSet<Material>? Material { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<ProductMaterial> ProductionMaterial { get; set; }
+        public DbSet<Production> Production { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Material> Material { get; set; }
 
-        public DbSet<Usuario>? Usuario { get; set; }    
+        public DbSet<Usuario> Usuario { get; set; }   
+        
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -10,6 +10,8 @@ namespace ProductionOrderSEQUOR.Infra.Data.EntitiesConfiguration
         public void Configure(EntityTypeBuilder<Production> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.ProIdUser).IsRequired();
+            builder.Property(x => x.ProIdProduct).IsRequired();
             builder.Property(x => x.Email).IsRequired();
             builder.Property(x => x.Quantity).IsRequired();
             builder.Property(x => x.MaterialCode).IsRequired();
@@ -21,10 +23,10 @@ namespace ProductionOrderSEQUOR.Infra.Data.EntitiesConfiguration
                    .HasForeignKey(x => x.Id ) // Garantindo que a chave estrangeira seja UserId
                    .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(x => x.Order)
+           /* builder.HasOne(x => x.Order)
                    .WithMany(x => x.Productions)
                    .HasForeignKey(x => x.Id) // Garantindo que a chave estrangeira seja OrderId
-                   .OnDelete(DeleteBehavior.NoAction);
+                   .OnDelete(DeleteBehavior.NoAction); */
         }
     }
 }

@@ -16,7 +16,20 @@ namespace ProductionOrderSEQUOR.Application.Services
         private readonly IProductionRepository _repository;
         private readonly IMapper _mapper;
 
-        
+        public ProductionService(IProductionRepository repository, IMapper mapper)
+        {
+            _repository = repository;
+            _mapper = mapper;
+        }
+
+
+        public async Task<ProductionDTO> Incluir(ProductionPostDTO productionPostDTO)
+        {
+            var production = _mapper.Map<Production>(productionPostDTO);
+            var productionIncluido = await _repository.Incluir(production);
+            return _mapper.Map<ProductionDTO>(productionIncluido);
+        }
+
         public async Task<ProductionDTO> Alterar(ProductionDTO productionDTO)
         {
             var production = _mapper.Map<Production>(productionDTO);
@@ -30,12 +43,6 @@ namespace ProductionOrderSEQUOR.Application.Services
             return _mapper.Map<ProductionDTO>(productionExcluido);
         }
 
-        public async Task<ProductionDTO> Incluir(ProductionPostDTO productionPostDTO)
-        {
-            var production = _mapper.Map<Production>(productionPostDTO);
-            var productionIncluido = await _repository.Incluir(production);
-            return _mapper.Map<ProductionDTO>(productionIncluido);
-        }
 
         public async Task<ProductionDTO> SelecionarAsync(int id)
         {
