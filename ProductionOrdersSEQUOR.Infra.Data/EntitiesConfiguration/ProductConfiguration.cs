@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProductionOrderSEQUOR.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductionOrderSEQUOR.Infra.Data.EntitiesConfiguration
 {
@@ -13,12 +8,17 @@ namespace ProductionOrderSEQUOR.Infra.Data.EntitiesConfiguration
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => x.Id); // Chave primária é o Id do Product
             builder.Property(x => x.ProductCode);
             builder.Property(x => x.ProductDescription).IsRequired();
             builder.Property(x => x.Image).IsRequired();
-           // builder.Property(x => x.IDProduct).IsRequired();
             builder.Property(x => x.CycleTime).IsRequired();
+
+            // Se o relacionamento com Produção existir, pode ser adicionado aqui
+            builder.HasMany(x => x.Productions) // Um produto pode ter várias productions
+                   .WithOne(x => x.Product) // Cada produção tem um único produto
+                   .HasForeignKey(x => x.ProIdProduct) // A chave estrangeira para o Product
+                   .OnDelete(DeleteBehavior.NoAction); // Mantém a integridade referencial
         }
     }
 }

@@ -18,6 +18,8 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         public User User { get; set; }
         public Product Product { get; set; }
 
+        public ICollection<Product> Products { get;  set; }
+
         // Construtor padrão necessário para o AutoMapper
         public Production()
         {
