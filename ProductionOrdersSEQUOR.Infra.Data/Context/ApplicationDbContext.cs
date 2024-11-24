@@ -18,11 +18,13 @@ namespace ProductionOrderSEQUOR.Infra.Data.Context
         public DbSet<ProductMaterial> ProductionMaterial { get; set; }
         public DbSet<Production> Production { get; set; }
         public DbSet<Product> Product { get; set; }
-        public DbSet<Order> Order { get; set; }
+
         public DbSet<Material> Material { get; set; }
 
-        public DbSet<Usuario> Usuario { get; set; }   
-        
+        public DbSet<Usuario> Usuario { get; set; }
+
+        // public DbSet<Order> Order { get; set; } removida
+
 
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -58,6 +58,7 @@ namespace ProductionOrderSEQUOR.Infra.Data.Migrations
                     b.ToTable("Material");
                 });
 
+            /*
             modelBuilder.Entity("ProductionOrderSEQUOR.Domain.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -82,7 +83,7 @@ namespace ProductionOrderSEQUOR.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Order");
-                });
+                }); */
 
             modelBuilder.Entity("ProductionOrderSEQUOR.Domain.Entities.Product", b =>
                 {

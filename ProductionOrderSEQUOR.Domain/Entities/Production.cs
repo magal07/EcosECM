@@ -5,6 +5,7 @@ namespace ProductionOrderSEQUOR.Domain.Entities
 {
     public class Production
     {
+
         public int Id { get; private set; }
         public int ProIdUser { get; private set; }
         public int ProIdProduct { get; private set; }
