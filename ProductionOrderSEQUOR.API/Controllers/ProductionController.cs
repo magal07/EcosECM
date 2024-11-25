@@ -71,9 +71,9 @@ namespace PproductionOrderSEQUOR.API.Controllers
             var productionDTOalterado = await _productionService.Alterar(productionDTO);
             if (productionDTOalterado == null)
             {
-                return BadRequest("Ocorreu um erro ao alterar o cliente");
+                return BadRequest("Ocorreu um erro ao alterar a produção.");
             }
-            return Ok("Cliente alterado com sucesso!");
+            return Ok("Produção alterada com sucesso!");
         }
 
         [HttpDelete]
@@ -83,9 +83,9 @@ namespace PproductionOrderSEQUOR.API.Controllers
             var productionDTOExcluido = await _productionService.Excluir(id);
             if (productionDTOExcluido == null)
             {
-                return BadRequest("Ocorreu um erro ao excluir o cliente.");
+                return BadRequest("Ocorreu um erro ao excluir a produção.");
             }
-            return Ok("Cliente excluido com sucesso!");
+            return Ok("Produção excluida com sucesso!");
         }
 
         [HttpGet("{id}")]
@@ -94,7 +94,7 @@ namespace PproductionOrderSEQUOR.API.Controllers
             var production = await _productionService.SelecionarAsync(id);
             if (production == null)
             {
-                return BadRequest("Cliente não encontrado.");
+                return BadRequest("Produção não encontrada.");
             }
             return Ok(production);
         }
