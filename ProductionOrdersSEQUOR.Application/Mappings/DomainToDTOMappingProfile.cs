@@ -17,9 +17,18 @@ namespace ProductionOrderSEQUOR.Application.Mappings
             CreateMap<Production, ProductionPostDTO>().ReverseMap();
 
 
-
-            // ACIMA: Mapeamento do Product e User dentro de Produção! 
-
+            // Filtro de horário
+              /*  CreateMap<ProductionPostDTO, Production>()
+                    .ForMember(dest => dest.DateEnd, opt => opt.MapFrom(src => src.DateEnd)); // Mapeia TimeSpan corretamente
+            CreateMap<Production, ProductionDTO>();
+            */
         }
+
+
+
+
+        // ACIMA: Mapeamento do Product e User dentro de Produção! 
+
     }
 }
+

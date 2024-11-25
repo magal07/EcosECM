@@ -12,24 +12,40 @@ namespace PproductionOrderSEQUOR.API.Controllers
     {
 
         private readonly IProductionService _productionService;
+        private readonly IUsuarioService _usuarioService;
 
-        public ProductionController(IProductionService productionService)
+        public ProductionController(IProductionService productionService, IUsuarioService usuarioService)
         {
             _productionService = productionService;
+            _usuarioService = usuarioService;
         }
 
         [HttpPost]
-
         public async Task<ActionResult> Incluir(ProductionPostDTO productionPostDTO)
-        { 
-
-            var productionDTOIncluido = await _productionService.Incluir(productionPostDTO);
-            if (productionDTOIncluido == null)
+        {
+            if (productionPostDTO == null)
             {
-                return BadRequest("Ocorreu um erro ao incluir a produção");
+                return BadRequest("Dados de produção não podem ser nulos.");
             }
-            return Ok("Produção incluída com sucesso!"); 
+
+            try
+            {
+                // var timeOnly = productionPostDTO.DateEnd; 
+               
+                var productionDTOIncluido = await _productionService.Incluir(productionPostDTO);
+                if (productionDTOIncluido == null)
+                {
+                    return BadRequest("Ocorreu um erro ao incluir a produção.");
+                }
+                return Ok("Produção incluída com sucesso!");
             }
+            catch (Exception ex)
+            {
+                // Lide com a exceção apropriadamente
+                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
+            }
+        }
+
 
         [HttpPut]
 

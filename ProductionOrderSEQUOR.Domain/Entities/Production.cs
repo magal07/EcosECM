@@ -24,9 +24,9 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         // Construtor padrão necessário para o AutoMapper
         public Production()
         {
-            //// Inicialize as propriedades com valores padrão
-            //Email = string.Empty;
-            //MaterialCode = string.Empty;
+            // Inicialize as propriedades com valores padrão
+            Email = 
+            MaterialCode = string.Empty;
         }
 
         // Construtor com parâmetros para inicialização completa
@@ -66,7 +66,7 @@ namespace ProductionOrderSEQUOR.Domain.Entities
             DomainExceptionValidation.When(proIdProduct < 0, "O produto não pode ter um ID negativo.");
             DomainExceptionValidation.When(materialCode.Length > 200, "O código do material deve ter no máximo 200 caracteres.");
             DomainExceptionValidation.When(date == DateTime.MinValue, "Data inicial incorreta!");
-            DomainExceptionValidation.When(dateEnd == DateTime.MinValue, "Data final incorreta!");
+            DomainExceptionValidation.When(dateEnd == DateTime.MinValue, "Horário Inválido!");
             DomainExceptionValidation.When(cycleTime <= 0, "O tempo de ciclo deve ser maior que zero.");
             DomainExceptionValidation.When(quantity <= 0, "A quantidade deve ser maior que zero.");
 
