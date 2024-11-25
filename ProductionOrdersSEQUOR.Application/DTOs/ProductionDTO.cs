@@ -20,16 +20,10 @@ namespace ProductionOrderSEQUOR.Application.DTOs
 
         public string Email { get; set; } 
 
-        //  public string MaterialCode { get; set; } = string.Empty;
-
-
         public UserDTO UserDTO { get; set; }
 
         public ProductDTO ProductDTO { get; set; }
 
-       
-        
-        
 
         [Column(TypeName = "datetime")]
         public DateTime Date { get;  set; } = DateTime.UtcNow; // Define automaticamente como a data atual

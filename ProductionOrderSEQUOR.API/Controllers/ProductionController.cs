@@ -54,8 +54,17 @@ namespace PproductionOrderSEQUOR.API.Controllers
 
         [HttpPut]
 
-        public async Task<ActionResult> Alterar(ProductionDTO productionDTO)
+        public async Task<ActionResult> Alterar(ProductionPutDTO productionPutDTO)
         {
+            var productionDTO = await _productionService.SelecionarAsync(productionPutDTO.Id);
+            if (productionDTO == null)
+            {
+                return NotFound("Produção não encontrada.");
+            }
+
+            productionDTO.Email = productionPutDTO.Email;
+            productionDTO.Quantity = productionPutDTO.Quantity; 
+
             var productionDTOalterado = await _productionService.Alterar(productionDTO);
             if (productionDTOalterado == null)
             {

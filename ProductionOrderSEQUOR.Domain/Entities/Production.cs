@@ -9,7 +9,7 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         public int Id { get; private set; }
         public int ProIdUser { get; private set; }
         public int ProIdProduct { get; private set; }
-        public string Email { get; private set; } 
+        public string Email { get;  set; } 
         public DateTime Date { get; private set; }
         public DateTime DateEnd { get; private set; }
         public decimal Quantity { get; private set; }
@@ -24,18 +24,19 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         // Construtor padrão necessário para o AutoMapper
         public Production()
         {
-            // Inicialize as propriedades com valores padrão
+            /*Inicialize as propriedades com valores padrão
             Email = string.Empty;
-            MaterialCode = string.Empty;
+            MaterialCode = string.Empty;*/ 
         }
 
         // Construtor com parâmetros para inicialização completa
         public Production(int id, int proIdUser, int proIdProduct, DateTime date, DateTime dateEnd, string email, decimal quantity, string materialCode, decimal cycleTime)
         {
             DomainExceptionValidation.When(id < 0, "Id do produto deve ser positivo.");
+            Id = id;
             ValidateDomain(proIdUser, proIdProduct, date, dateEnd, email, quantity, materialCode, cycleTime); // Corrigido: Incluído `materialCode` e `dateEnd`
 
-            Id = id;
+            
             ProIdUser = proIdUser;
             ProIdProduct = proIdProduct;
             Date = date;

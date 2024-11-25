@@ -32,10 +32,21 @@ namespace ProductionOrderSEQUOR.Application.Services
 
         public async Task<ProductionDTO> Alterar(ProductionDTO productionDTO)
         {
-            var production = _mapper.Map<Production>(productionDTO);
-            var productionAlterado = await _repository.Alterar(production);
+            // Carrega a entidade existente com o mesmo ID
+            var existingProduction = await _repository.SelecionarAsync(productionDTO.Id);
+            if (existingProduction == null)
+            {
+                throw new Exception("Produção não encontrada");
+            }
+
+            // Atualiza os campos da entidade existente com os dados do DTO
+            _mapper.Map(productionDTO, existingProduction);
+
+            // Chama o repositório para atualizar a entidade no banco de dados
+            var productionAlterado = await _repository.Alterar(existingProduction);
             return _mapper.Map<ProductionDTO>(productionAlterado);
         }
+
 
         public async Task<ProductionDTO> Excluir(int id)
         {

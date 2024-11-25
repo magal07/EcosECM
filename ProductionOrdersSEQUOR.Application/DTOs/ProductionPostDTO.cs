@@ -11,6 +11,10 @@ namespace ProductionOrderSEQUOR.Application.DTOs
     public class ProductionPostDTO
     {
 
+        [Required(ErrorMessage = "O identificador da produção é obrigatória.")]
+        [Range(1, int.MaxValue, ErrorMessage = "O identificador da produção é inválido.")]
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "O usuário é obrigatório")]
          [Range(1, int.MaxValue, ErrorMessage = "O identificador do usuário é invalido!")]
         public int ProIdUser { get; set; }
