@@ -4,12 +4,13 @@ using ProductionOrderSEQUOR.API.Models;
 using ProductionOrderSEQUOR.Application.DTOs;
 using ProductionOrderSEQUOR.Application.Interfaces;
 using ProductionOrderSEQUOR.Domain.Account;
+using ProductionOrderSEQUOR.Domain.Entities;
+using ProductionOrderSEQUOR.Infra.Ioc;
 
 namespace ProductionOrderSEQUOR.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-
     public class UsuarioController : Controller
     {
         private readonly IAuthenticate _authenticateService;
@@ -34,17 +35,37 @@ namespace ProductionOrderSEQUOR.API.Controllers
             {
                 return BadRequest("Este e-mail já possui um cadastro!");
             }
-            var usuario = await _usuarioService.Incluir(usuarioDTO);
-            if (usuario == null)
+
+            var existeUsuarioSistema = await _usuarioService.ExisteUsuarioCadastradoAsync();
+            if (!existeUsuarioSistema)
             {
-                return BadRequest("Ocorreu um erro ao cadastrar.");
+                usuarioDTO.IsAdmin = true;
             }
-            var token = _authenticateService.GenerateToken(usuario.Id, usuario.Email);
-            return new UserToken
+            else
             {
-                Token = token
-            };
-        }
+                if (User.FindFirst("id") == null)
+                {
+                    return Unauthorized();
+                }
+                    var userId = User.GetId();
+                    var user = await _usuarioService.SelecionarAsync(userId);
+                    if (!user.IsAdmin)
+                    {
+                        return Unauthorized("Você não tem permissão para incluir novos usuários");
+                    }
+                }
+
+                var usuario = await _usuarioService.Incluir(usuarioDTO);
+                if (usuario == null)
+                {
+                    return BadRequest("Ocorreu um erro ao cadastrar.");
+                }
+                var token = _authenticateService.GenerateToken(usuario.Id, usuario.Email);
+                return new UserToken
+                {
+                    Token = token
+                };
+            }
 
             [HttpPost("login")]
 
@@ -57,18 +78,18 @@ namespace ProductionOrderSEQUOR.API.Controllers
                     return Unauthorized("Usuário não existe!");   // validação do user
                 }
 
-            var result = await _authenticateService.AuthenticateAsync(loginModel.Email, loginModel.Password);
-            if (!result) 
-            {
-                return Unauthorized("Usuário ou senha inválido.");
-            }
-            var usuario = await _authenticateService.GetUserByEmail(loginModel.Email);
-            var token = _authenticateService.GenerateToken(usuario.Id, usuario.Email);
+                var result = await _authenticateService.AuthenticateAsync(loginModel.Email, loginModel.Password);
+                if (!result)
+                {
+                    return Unauthorized("Usuário ou senha inválido.");
+                }
+                var user = await _authenticateService.GetUserByEmail(loginModel.Email);
+                var token = _authenticateService.GenerateToken(user.Id, user.Email);
 
-            return new UserToken
-            {
-                Token = token
-            };
+                return new UserToken
+                {
+                    Token = token
+                };
             }
         }
     }

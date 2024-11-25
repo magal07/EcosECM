@@ -4,6 +4,7 @@ using ProductionOrderSEQUOR.Application.DTOs;
 using ProductionOrderSEQUOR.Application.Interfaces;
 using ProductionOrderSEQUOR.Domain.Entities;
 using ProductionOrderSEQUOR.Domain.Interfaces;
+using ProductionOrderSEQUOR.Domain.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,10 +49,11 @@ namespace ProductionOrderSEQUOR.Application.Services
             var user = await _repository.SelecionarAsync(id);
             return _mapper.Map<UserDTO>(user);
         }
-        public async Task<IEnumerable<UserDTO>> SelecionarTodosAsync()
+        public async Task<PagedList<UserDTO>> SelecionarTodosAsync(int pageNumber, int pageSize)
         {
-            var users = await _repository.SelecionarTodosAsync();
-            return _mapper.Map<IEnumerable<UserDTO>>(users);
-        }   
+            var users = await _repository.SelecionarTodosAsync(pageNumber, pageSize);
+            var userDTO = _mapper.Map<IEnumerable<UserDTO>>(users);
+            return new PagedList<UserDTO>(userDTO, pageNumber, pageSize, users.TotalCount);
+        }
     }
 }

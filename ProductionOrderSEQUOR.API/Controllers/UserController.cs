@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProductionOrderSEQUOR.API.Extensions;
 using ProductionOrderSEQUOR.API.Models;
 using ProductionOrderSEQUOR.Application.DTOs;
 using ProductionOrderSEQUOR.Application.Interfaces;
@@ -11,6 +12,7 @@ namespace ProductionOrderSEQUOR.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")] // -> só usuários autenticados conseguirão acessar clientes e gerar mudanças
+    [Authorize]
 
     public class UserController : Controller
     {
@@ -78,9 +80,13 @@ namespace ProductionOrderSEQUOR.API.Controllers
         }
 
         [HttpGet]
-            public async Task<ActionResult> SelecionarTodos()
+            public async Task<ActionResult> SelecionarTodos([FromQuery]PaginationParams paginationParms)
         {
-            var usersDTO = await _userService.SelecionarTodosAsync();
+            var usersDTO = await _userService.SelecionarTodosAsync
+                (paginationParms.PageNumber, paginationParms.PageSize);
+
+            Response.AddPaginationHeader(new PaginationHeader(usersDTO.CurrentPage, usersDTO.PageSize,
+                usersDTO.TotalCount, usersDTO.TotalPages));
 
             return Ok(usersDTO);
         }    

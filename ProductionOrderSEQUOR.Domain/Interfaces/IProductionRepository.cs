@@ -15,5 +15,7 @@ namespace ProductionOrderSEQUOR.Domain.Interfaces
         Task<Production> SelecionarAsync(int id);
         Task<IEnumerable<Production>> SelecionarTodosAsync();
 
+        // Task<bool> VerificaFinalizadoAsync(int idProduct);
+
     }
 }

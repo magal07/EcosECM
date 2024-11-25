@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProductionOrderSEQUOR.Application.DTOs;
 using ProductionOrderSEQUOR.Domain.Entities;
+using ProductionOrderSEQUOR.Domain.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace ProductionOrderSEQUOR.Application.Interfaces
         Task<UserDTO> Alterar(UserDTO userDTO);
         Task<UserDTO> Excluir(int id);
         Task<UserDTO> SelecionarAsync(int id);
-        Task<IEnumerable<UserDTO>> SelecionarTodosAsync();
+        Task<PagedList<UserDTO>> SelecionarTodosAsync(int pageNumber, int pageSize);
 
         // Task<bool> SaveAllAsync(); // mecanismo que vai salvar o método, sendo inclusão, alteração ou exclusão!
     }

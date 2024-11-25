@@ -15,5 +15,7 @@ namespace ProductionOrderSEQUOR.Application.Interfaces
         Task<ProductionDTO> Excluir(int id);
         Task<ProductionDTO> SelecionarAsync(int id);
         Task<IEnumerable<ProductionDTO>> SelecionarTodosAsync();
+        // Task<bool> VerificaDisponibilidadeAsync(int idProduct);
+
     }
 }

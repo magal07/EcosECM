@@ -4,7 +4,9 @@ using ProductionOrderSEQUOR.Application.Interfaces;
 using ProductionOrderSEQUOR.Application.Services;
 using ProductionOrderSEQUOR.Domain.Entities;
 using ProductionOrderSEQUOR.Domain.Interfaces;
+using ProductionOrderSEQUOR.Domain.Pagination;
 using ProductionOrderSEQUOR.Infra.Data.Context;
+using ProductionOrderSEQUOR.Infra.Data.Helpes;
 
 namespace ProductionOrderSEQUOR.Infra.Data.Repositories
 {
@@ -58,9 +60,10 @@ namespace ProductionOrderSEQUOR.Infra.Data.Repositories
         }
 
         
-        public async Task<IEnumerable<User>> SelecionarTodosAsync()
+        public async Task<PagedList<User>> SelecionarTodosAsync(int pageNumber, int pageSize)
         {
-            return await _context.User.ToListAsync();  
+            var query = _context.User.AsQueryable();
+          return await   PaginationHelper.CreateAsync(query, pageNumber, pageSize);
         }
 
         

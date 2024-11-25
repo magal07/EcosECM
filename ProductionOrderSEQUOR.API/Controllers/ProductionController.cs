@@ -8,6 +8,7 @@ namespace PproductionOrderSEQUOR.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")] // -> só usuários autenticados conseguirão acessar clientes e gerar mudanças
+    [Authorize]
     public class ProductionController : Controller
     {
 

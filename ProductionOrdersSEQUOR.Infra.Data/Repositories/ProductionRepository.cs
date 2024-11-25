@@ -71,5 +71,10 @@ namespace ProductionOrderSEQUOR.Infra.Data.Repositories
         {
             return await _context.SaveChangesAsync() > 0;
         }
+
+       /* public Task<bool> VerificaFinalizadoAsync(int idProduct)
+        {
+            _context.Production.Where>x => x.idProduct == idProduct && x.Finalizado == false).AnyAsync();
+        } */ 
     }
 }

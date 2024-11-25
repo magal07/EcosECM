@@ -67,5 +67,10 @@ namespace ProductionOrderSEQUOR.Application.Services
             return _mapper.Map<IEnumerable<ProductionDTO>>(productions);
 
         }
+
+        public Task<bool> VerificaFinalizadoAsync(int idProduct)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -75,5 +75,10 @@ namespace ProductionOrderSEQUOR.Infra.Data.Repositories
         {
            return await _context.Usuario.FirstOrDefaultAsync( u => u.Id == id);
         }
+
+        public async Task<bool> ExisteUsuarioCadastradoAsync()
+        {
+            return await _context.Usuario.AnyAsync();
+        }
     }
 }

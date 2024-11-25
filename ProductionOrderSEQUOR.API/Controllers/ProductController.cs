@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProductionOrderSEQUOR.Application.DTOs;
 using ProductionOrderSEQUOR.Application.Interfaces;
 using ProductionOrderSEQUOR.Infra.Ioc;
@@ -6,7 +7,8 @@ using ProductionOrderSEQUOR.Infra.Ioc;
 namespace ProductionOrderSEQUOR.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")] 
+    [Route("api/[controller]")]
+    [Authorize]
     public class ProductController : Controller
 
     {

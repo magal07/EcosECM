@@ -1,4 +1,5 @@
 ﻿using ProductionOrderSEQUOR.Domain.Entities;
+using ProductionOrderSEQUOR.Domain.Pagination;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
     Task<User> Alterar(User user);
     Task<User> Excluir(int id);
     Task<User> SelecionarAsync(int id);
-    Task<IEnumerable<User>> SelecionarTodosAsync();
+    Task<PagedList<User>> SelecionarTodosAsync(int pageNumber, int pageSize);
 
     // Task<bool> SaveAllAsync(); // mecanismo que vai salvar o método, sendo inclusão, alteração ou exclusão!
 
