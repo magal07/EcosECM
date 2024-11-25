@@ -14,5 +14,6 @@ namespace ProductionOrderSEQUOR.Domain.Interfaces
         Task<Production> Excluir(int id);
         Task<Production> SelecionarAsync(int id);
         Task<IEnumerable<Production>> SelecionarTodosAsync();
+
     }
 }

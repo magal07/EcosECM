@@ -25,9 +25,9 @@ namespace ProductionOrderSEQUOR.API.Controllers
             var productDTOIncluido = await _productService.Incluir(productDTO);
             if (productDTOIncluido == null)
             {
-                return BadRequest("Ocorreu um erro ao incluir o cliente");
+                return BadRequest("Ocorreu um erro ao incluir o produto");
             }
-            return Ok("Cliente incluído com sucesso!");
+            return Ok("Produto incluído com sucesso!");
         }
 
         [HttpPut]

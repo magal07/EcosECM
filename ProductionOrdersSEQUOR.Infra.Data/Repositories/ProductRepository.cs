@@ -47,12 +47,12 @@ namespace ProductionOrderSEQUOR.Infra.Data.Repositories
         }
 
 
-        public async Task<Product> SelecionarByPk(int id)
+        public async Task<Product> SelecionarAsync(int id)
         {
             var product = await _context.Product.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (product == null)
             {
-                throw new Exception("Usuário não encontrado!");
+                throw new Exception("Produto não encontrado!");
             }
             return product;
         }
@@ -67,11 +67,6 @@ namespace ProductionOrderSEQUOR.Infra.Data.Repositories
         public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync() > 0;
-        }
-
-        public async Task<Product> SelecionarAsync(int id)
-        {
-            return await _context.Product.FirstOrDefaultAsync(u => u.Id == id);
         }
     }
 }

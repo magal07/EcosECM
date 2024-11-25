@@ -18,7 +18,7 @@ namespace ProductionOrderSEQUOR.Application.DTOs
 
         public int ProIdProduct { get; set; }
 
-        public string Email { get; set; } 
+        public string Email { get; set; } = string.Empty;
 
         public UserDTO UserDTO { get; set; }
 

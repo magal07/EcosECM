@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ProductionOrderSEQUOR.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -11,27 +13,29 @@ namespace ProductionOrderSEQUOR.Application.DTOs
     public class ProductionPostDTO
     {
 
-        [Required(ErrorMessage = "O identificador da produção é obrigatória.")]
-        [Range(1, int.MaxValue, ErrorMessage = "O identificador da produção é inválido.")]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "O usuário é obrigatório")]
-         [Range(1, int.MaxValue, ErrorMessage = "O identificador do usuário é invalido!")]
+        [Range(1, int.MaxValue, ErrorMessage = "O identificador do usuário é invalido!")]
         public int ProIdUser { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "O identificador do usuário é invalido!")]
 
         [Required(ErrorMessage = "O produto é obrigatório")]
-        public int ProIdProduct{ get; set; }
+        public int ProIdProduct { get; set; }
 
 
         [Required(ErrorMessage = "A quantidade é obrigatória. ")]
         [Range(1, int.MaxValue, ErrorMessage = "Quantidade inválida. ")]
         public decimal Quantity { get; set; }
 
-        
+
         //[Required(ErrorMessage = "Informe o código do material. ")]
         [Range(1, int.MaxValue, ErrorMessage = "Quantidade inválida. ")]
         public string MaterialCode { get; set; }
+        /*
+        [JsonIgnore]
+        public string Email { get; set; }  
+        */ 
 
         [JsonIgnore]
         public decimal CycleTime { get; set; }
@@ -42,6 +46,7 @@ namespace ProductionOrderSEQUOR.Application.DTOs
 
         [JsonIgnore]
         public DateTime DateEnd { get; set; }
+
 
         /*
         [JsonIgnore]

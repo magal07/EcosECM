@@ -29,6 +29,7 @@ namespace ProductionOrderSEQUOR.Infra.Data.Repositories
         }
 
 
+
         public async Task<Production> Alterar(Production production)
         {
             _context.Production.Update(production);
@@ -49,9 +50,9 @@ namespace ProductionOrderSEQUOR.Infra.Data.Repositories
         }
 
 
-        public async Task<Production> SelecionarByPk(int id)
+        public async Task<Production> SelecionarAsync(int id)
         {
-            var production = await _context.Production.Where(x => x.Id == id).FirstOrDefaultAsync();
+            var production = await _context.Production.Include(x => x.User).Include(x => x.Product).AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
             if (production == null)
             {
                 throw new Exception("Usuário não encontrado!");
@@ -69,11 +70,6 @@ namespace ProductionOrderSEQUOR.Infra.Data.Repositories
         public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync() > 0;
-        }
-
-        public async Task<Production> SelecionarAsync(int id)
-        {
-            return await _context.Production.FirstOrDefaultAsync(u => u.Id == id);
         }
     }
 }

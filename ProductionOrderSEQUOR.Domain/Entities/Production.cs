@@ -24,9 +24,9 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         // Construtor padrão necessário para o AutoMapper
         public Production()
         {
-            /*Inicialize as propriedades com valores padrão
+            //Inicialize as propriedades com valores padrão
             Email = string.Empty;
-            MaterialCode = string.Empty;*/ 
+            MaterialCode = string.Empty;
         }
 
         // Construtor com parâmetros para inicialização completa
@@ -36,7 +36,6 @@ namespace ProductionOrderSEQUOR.Domain.Entities
             Id = id;
             ValidateDomain(proIdUser, proIdProduct, date, dateEnd, email, quantity, materialCode, cycleTime); // Corrigido: Incluído `materialCode` e `dateEnd`
 
-            
             ProIdUser = proIdUser;
             ProIdProduct = proIdProduct;
             Date = date;

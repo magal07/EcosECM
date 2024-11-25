@@ -13,11 +13,13 @@ namespace PproductionOrderSEQUOR.API.Controllers
 
         private readonly IProductionService _productionService;
         private readonly IUsuarioService _usuarioService;
+        private readonly IUserService _userService;
 
-        public ProductionController(IProductionService productionService, IUsuarioService usuarioService)
+        public ProductionController(IProductionService productionService, IUsuarioService usuarioService, IUserService userService)
         {
             _productionService = productionService;
             _usuarioService = usuarioService;
+            _userService = userService;
         }
 
         [HttpPost]
@@ -86,14 +88,14 @@ namespace PproductionOrderSEQUOR.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult> Selecionar(int id)
+        public async Task<ActionResult> SelecionarAsync(int id)
         {
-            var productionDTO = await _productionService.SelecionarAsync(id);
-            if (productionDTO == null)
+            var production = await _productionService.SelecionarAsync(id);
+            if (production == null)
             {
                 return BadRequest("Cliente não encontrado.");
             }
-            return Ok(productionDTO);
+            return Ok(production);
         }
 
         [HttpGet]
