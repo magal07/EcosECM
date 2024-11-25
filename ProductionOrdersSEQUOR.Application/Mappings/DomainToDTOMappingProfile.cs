@@ -11,9 +11,9 @@ namespace ProductionOrderSEQUOR.Application.Mappings
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<Usuario, UsuarioDTO>().ReverseMap();
             CreateMap<Product, ProductDTO>().ReverseMap();
-            CreateMap<Production, ProductionDTO>().ReverseMap().
-                    ForMember(dest => dest.Product, opt => opt.MapFrom(x => x.ProductDTO))
-                    .ForMember(dest => dest.User, opt => opt.MapFrom(x => x.UserDTO));
+            CreateMap<ProductionDTO, Production>().ReverseMap().
+                    ForMember(dest => dest.ProductDTO, opt => opt.MapFrom(x => x.Product))
+                    .ForMember(dest => dest.UserDTO, opt => opt.MapFrom(x => x.User));
             CreateMap<Production, ProductionPostDTO>().ReverseMap();
 
 

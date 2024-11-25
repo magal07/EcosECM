@@ -23,28 +23,33 @@ namespace PproductionOrderSEQUOR.API.Controllers
         [HttpPost]
         public async Task<ActionResult> Incluir(ProductionPostDTO productionPostDTO)
         {
-            if (productionPostDTO == null)
+            // Define as datas
+            productionPostDTO.Date = DateTime.Now;   // Data de início
+            productionPostDTO.DateEnd = DateTime.Now; // Data de término
+
+            // Calcula o CycleTime (diferença entre as duas datas)
+            if (productionPostDTO.Date != null && productionPostDTO.DateEnd != null)
             {
-                return BadRequest("Dados de produção não podem ser nulos.");
+                // Converte explicitamente o valor de double para decimal
+                productionPostDTO.CycleTime = (decimal)(productionPostDTO.DateEnd - productionPostDTO.Date).TotalMinutes; // ou TotalSeconds, TotalHours, conforme necessário
+            }
+            else
+            {
+                return BadRequest("Datas de início e fim não foram emprestadas corretamente.");
             }
 
-            try
+            // Chama o serviço para incluir a produção
+            var productionDTOIncluido = await _productionService.Incluir(productionPostDTO);
+
+            // Verifica se ocorreu algum erro
+            if (productionDTOIncluido == null)
             {
-                // var timeOnly = productionPostDTO.DateEnd; 
-               
-                var productionDTOIncluido = await _productionService.Incluir(productionPostDTO);
-                if (productionDTOIncluido == null)
-                {
-                    return BadRequest("Ocorreu um erro ao incluir a produção.");
-                }
-                return Ok("Produção incluída com sucesso!");
+                return BadRequest("Ocorreu um erro ao incluir a produção.");
             }
-            catch (Exception ex)
-            {
-                // Lide com a exceção apropriadamente
-                return StatusCode(500, $"Erro interno do servidor: {ex.Message}");
-            }
+
+            return Ok("Produção incluída com sucesso!");
         }
+
 
 
         [HttpPut]

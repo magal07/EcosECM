@@ -25,7 +25,7 @@ namespace ProductionOrderSEQUOR.Domain.Entities
         public Production()
         {
             // Inicialize as propriedades com valores padrão
-            Email = 
+            Email = string.Empty;
             MaterialCode = string.Empty;
         }
 

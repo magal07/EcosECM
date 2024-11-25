@@ -62,7 +62,7 @@ namespace ProductionOrderSEQUOR.Infra.Data.Repositories
 
         public async Task<IEnumerable<Production>> SelecionarTodosAsync()
         {
-            return await _context.Production.ToListAsync();
+            return await _context.Production.Include(x => x.User).Include(x => x.Product).ToListAsync();
         }
 
 

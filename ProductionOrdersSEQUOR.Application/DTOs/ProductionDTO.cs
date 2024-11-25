@@ -18,7 +18,9 @@ namespace ProductionOrderSEQUOR.Application.DTOs
 
         public int ProIdProduct { get; set; }
 
-      //  public string MaterialCode { get; set; } = string.Empty;
+        public string Email { get; set; } 
+
+        //  public string MaterialCode { get; set; } = string.Empty;
 
 
         public UserDTO UserDTO { get; set; }
@@ -26,8 +28,8 @@ namespace ProductionOrderSEQUOR.Application.DTOs
         public ProductDTO ProductDTO { get; set; }
 
        
-        public string Email { get;  set; } = string.Empty;
-        // public string Order { get;  set; } = string.Empty;
+        
+        
 
         [Column(TypeName = "datetime")]
         public DateTime Date { get;  set; } = DateTime.UtcNow; // Define automaticamente como a data atual

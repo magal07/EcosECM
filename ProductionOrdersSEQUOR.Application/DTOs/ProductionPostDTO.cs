@@ -27,12 +27,16 @@ namespace ProductionOrderSEQUOR.Application.DTOs
         
         //[Required(ErrorMessage = "Informe o código do material. ")]
         [Range(1, int.MaxValue, ErrorMessage = "Quantidade inválida. ")]
-        public string MaterialCode { get; set; } = string.Empty;
+        public string MaterialCode { get; set; }
 
-        [Required(ErrorMessage = "Informe uma data. ")]
+        [JsonIgnore]
+        public decimal CycleTime { get; set; }
+
+        [JsonIgnore]
         public DateTime Date { get; set; }
 
-        [Required(ErrorMessage = "Informe um horário. ")]
+
+        [JsonIgnore]
         public DateTime DateEnd { get; set; }
 
         /*
