@@ -11,9 +11,11 @@ using System.Threading.Tasks;
 namespace ProductionOrderSEQUOR.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")] // -> só usuários autenticados conseguirão acessar clientes e gerar mudanças
+    [Route("api/[controller]")] // -> só usuários autenticados conseguirão acessar clientes e gerar mudanças 
     [Authorize]
 
+
+                                             //~ USER = > Cliente. ~//
     public class UserController : Controller
     {
         private readonly IUserService _userService;

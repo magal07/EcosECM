@@ -7,7 +7,7 @@ using ProductionOrderSEQUOR.Infra.Ioc;
 namespace ProductionOrderSEQUOR.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("API/Orders/GetProduct")]
     [Authorize]
     public class ProductController : Controller
 
@@ -39,9 +39,9 @@ namespace ProductionOrderSEQUOR.API.Controllers
             var productDTOalterado = await _productService.Alterar(productDTO);
             if (productDTOalterado == null)
             {
-                return BadRequest("Ocorreu um erro ao alterar o cliente");
+                return BadRequest("Ocorreu um erro ao alterar o produto");
             }
-            return Ok("Cliente alterado com sucesso!");
+            return Ok("Produto alterado com sucesso!");
         }
 
         [HttpDelete]
@@ -51,9 +51,9 @@ namespace ProductionOrderSEQUOR.API.Controllers
             var productDTOExcluido = await _productService.Excluir(id);
             if (productDTOExcluido == null)
             {
-                return BadRequest("Ocorreu um erro ao excluir o cliente.");
+                return BadRequest("Ocorreu um erro ao excluir o produto.");
             }
-            return Ok("Cliente excluido com sucesso!");
+            return Ok("Produto excluido com sucesso!");
         }
 
         [HttpGet("{id}")]
@@ -62,7 +62,7 @@ namespace ProductionOrderSEQUOR.API.Controllers
             var productDTO = await _productService.SelecionarAsync(id);
             if (productDTO == null)
             {
-                return BadRequest("Cliente não encontrado.");
+                return BadRequest("Produto não encontrado.");
             }
             return Ok(productDTO);
         }

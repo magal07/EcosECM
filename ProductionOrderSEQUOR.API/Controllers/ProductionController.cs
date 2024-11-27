@@ -26,25 +26,19 @@ namespace PproductionOrderSEQUOR.API.Controllers
         [HttpPost]
         public async Task<ActionResult> Incluir(ProductionPostDTO productionPostDTO)
         {
-            // Define as datas
-            productionPostDTO.Date = DateTime.Now;   // Data de início
-            productionPostDTO.DateEnd = DateTime.Now; // Data de término
+            
+            productionPostDTO.Date = DateTime.Now;
 
-            // Calcula o CycleTime (diferença entre as duas datas)
-            if (productionPostDTO.Date != null && productionPostDTO.DateEnd != null)
-            {
-                // Converte explicitamente o valor de double para decimal
-                productionPostDTO.CycleTime = (decimal)(productionPostDTO.DateEnd - productionPostDTO.Date).TotalMinutes; // ou TotalSeconds, TotalHours, conforme necessário
-            }
-            else
-            {
-                return BadRequest("Datas de início e fim não foram emprestadas corretamente.");
-            }
+            
+            productionPostDTO.DateEnd = productionPostDTO.Date.AddMinutes(1);
 
-            // Chama o serviço para incluir a produção
+            // Calcula o CycleTime (diferença em minutos)
+            productionPostDTO.CycleTime = (decimal)(productionPostDTO.DateEnd - productionPostDTO.Date).TotalMinutes;
+
+            
             var productionDTOIncluido = await _productionService.Incluir(productionPostDTO);
 
-            // Verifica se ocorreu algum erro
+            
             if (productionDTOIncluido == null)
             {
                 return BadRequest("Ocorreu um erro ao incluir a produção.");
@@ -52,8 +46,6 @@ namespace PproductionOrderSEQUOR.API.Controllers
 
             return Ok("Produção incluída com sucesso!");
         }
-
-
 
         [HttpPut]
 

@@ -12,7 +12,7 @@ namespace ProductionOrderSEQUOR.Application.DTOs
 {
     public class ProductionPostDTO
     {
-
+        [JsonIgnore]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "O usuário é obrigatório")]
@@ -32,10 +32,10 @@ namespace ProductionOrderSEQUOR.Application.DTOs
         //[Required(ErrorMessage = "Informe o código do material. ")]
         [Range(1, int.MaxValue, ErrorMessage = "Quantidade inválida. ")]
         public string MaterialCode { get; set; }
-        /*
-        [JsonIgnore]
+       
+        
         public string Email { get; set; }  
-        */ 
+        
 
         [JsonIgnore]
         public decimal CycleTime { get; set; }

@@ -26,10 +26,9 @@ namespace ProductionOrderSEQUOR.Application.DTOs
 
 
         
-        [Required(ErrorMessage = "O tempo de ciclo é obrigatório.")]
         [Range(0.01, double.MaxValue, ErrorMessage = "O tempo de ciclo deve ser maior que zero.")]
         public decimal CycleTime { get; set; }
 
     }
-    
+ 
 }
