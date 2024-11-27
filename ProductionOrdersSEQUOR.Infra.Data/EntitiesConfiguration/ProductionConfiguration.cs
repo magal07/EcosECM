@@ -26,7 +26,7 @@ namespace ProductionOrderSEQUOR.Infra.Data.EntitiesConfiguration
             builder.HasOne(x => x.Product)
                    .WithMany(x => x.Productions) // Product pode ser referenciado por várias productions
                    .HasForeignKey(x => x.ProIdProduct) // A chave estrangeira é ProIdProduct
-                   .OnDelete(DeleteBehavior.NoAction); // Mantém a integridade referencial
+                   .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

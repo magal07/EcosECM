@@ -29,6 +29,9 @@ namespace ProductionOrderSEQUOR.Infra.Data.Identity
 
         public async Task<bool> AuthenticateAsync(string email, string senha)
         {
+            /* Procure no contexto Usuario um registro onde o email seja igual ao informado, ignorando
+             maiúsculas e minúsculas, e retorne o primeiro resultado encontrado ou null se não houver correspondência. */ 
+
             var usuario = await _context.Usuario.Where(x => x.Email.ToLower() == email.ToLower())
                                                       .FirstOrDefaultAsync();
             if (usuario == null)
@@ -58,7 +61,7 @@ namespace ProductionOrderSEQUOR.Infra.Data.Identity
 
             var credentials = new SigningCredentials(privateKey, SecurityAlgorithms.HmacSha256);
 
-            var expiration = DateTime.UtcNow.AddMinutes(10);
+            var expiration = DateTime.UtcNow.AddMinutes(10); // Expira o login em 10 minutos
 
             JwtSecurityToken token = new JwtSecurityToken(
                 issuer: _configuration["jwt:issuer"],

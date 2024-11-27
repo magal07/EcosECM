@@ -39,7 +39,7 @@ namespace ProductionOrderSEQUOR.API.Controllers
             var existeUsuarioSistema = await _usuarioService.ExisteUsuarioCadastradoAsync();
             if (!existeUsuarioSistema)
             {
-                usuarioDTO.IsAdmin = true;
+                usuarioDTO.IsAdmin = true; // <- Torna o primeiro usuário do sistem Admin
             }
             else
             {

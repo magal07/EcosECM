@@ -29,6 +29,8 @@ namespace ProductionOrderSEQUOR.API.Middleware
 
             catch (Exception ex)
             {
+                // PROUÇÃO RETORNA SV ERROR; 
+
                 _logger.LogError(ex, ex.Message);
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -37,11 +39,11 @@ namespace ProductionOrderSEQUOR.API.Middleware
                 var response = _env.IsDevelopment() ? 
                     new ApiException(context.Response.StatusCode.ToString(), ex.Message, ex.StackTrace.ToString()) :
                     new ApiException(context.Response.StatusCode.ToString(), ex.Message, "Internal server error");
-
                 var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
                 var json = JsonSerializer.Serialize(response, options);
                 await context.Response.WriteAsync(json);
+
             }
         }
 

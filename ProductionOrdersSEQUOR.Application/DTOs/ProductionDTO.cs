@@ -27,9 +27,9 @@ namespace ProductionOrderSEQUOR.Application.DTOs
 
 
         [Column(TypeName = "datetime")]
-        public DateTime Date { get;  set; } = DateTime.UtcNow; // Define automaticamente como a data atual
+        public DateTime Date { get;  set; } = DateTime.UtcNow;
         [Column(TypeName = "hourtime")]
-        public DateTime DateEnd { get;  set; } // Define automaticamente o horário atual
+        public DateTime DateEnd { get;  set; } 
         public decimal Quantity { get;  set; }
         public decimal CycleTime { get;  set; }
 

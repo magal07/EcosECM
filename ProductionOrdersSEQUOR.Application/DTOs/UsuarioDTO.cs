@@ -26,7 +26,7 @@ namespace ProductionOrderSEQUOR.Application.DTOs
         [NotMapped]
         public string Password { get; set; }
 
-        [JsonIgnore] // pra não retornar para o usuário \/ 
+        [JsonIgnore]
         public bool IsAdmin { get; set; }
 
     }
