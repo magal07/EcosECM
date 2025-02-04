@@ -6,7 +6,7 @@ A API fornece endpoints para criação, consulta, atualização e exclusão de o
 
 ## 🚀 Tecnologias Utilizadas
 - **C#**
-- **.NET Core 3.0**
+- **.NET Core 6.0**
 - **SQL Server**
 - **Entity Framework Core**
 - **Swagger (OpenAPI)**
