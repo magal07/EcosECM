@@ -26,6 +26,11 @@ A API fornece endpoints para criação, consulta, atualização e exclusão de o
 - **Visual Studio** (recomendado para desenvolvimento e depuração)
 
 ### 🔽 Configuração do Banco de Dados
+
+Importe o **Banco de de dados** no SQL Server, o arquivo encontra-se neste projeto com o nome: ProductionOrders.BAK. 
+
+Ou --->\/ 
+
 1. Criar o banco de dados no SQL Server:
    ```sql
    CREATE DATABASE ProductionOrdersDB;
