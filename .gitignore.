@@ -1,0 +1,28 @@
+# 🔹 Pastas de build
+bin/
+obj/
+
+# 🔹 Arquivos do Visual Studio
+.vs/
+*.user
+*.suo
+*.vscode
+
+# 🔹 Logs, pacotes e dependências
+*.log
+*.nupkg
+*.lock.json
+packages/
+node_modules/
+
+# 🔹 Configurações locais e arquivos temporários
+*.tmp
+*.cache
+*.bak
+
+# 🔹 Arquivos de configuração específicos do projeto
+*.csproj.user
+*.dbmdl
+*.pdb
+*.pidb
+*.sln.docstates
